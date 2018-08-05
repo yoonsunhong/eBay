@@ -1,0 +1,280 @@
+﻿var grid1 = {
+    grid_id: "#jqxMainGrid"
+   , grid_init: function (dataAdapter) {
+       $(grid1.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: tab_1.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: '승인일', datafield: 'CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               { text: 'PG', datafield: 'PAY_TYPE_NAME', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer_1 },
+               { text: '구분', datafield: 'STATUS_NAME', width: 40, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer_1 },
+               {
+                   text: 'PG코드', datafield: 'PAY_TYPE', width: 1, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer_1, hidden: true
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '구분코드', datafield: 'STATUS_CODE', width: 1, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer_1, hidden: true
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '건수', datafield: 'DIFF_CLOSE_CNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '승인액', datafield: 'DIFF_PAY_AMNT', width: 140, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '입금예정액', datafield: 'DIFF_RECP_SCHEDULED_AMNT', width: 140, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료', datafield: 'DIFF_FEE_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료공급가액', datafield: 'DIFF_FEE_SUPPLY_AMNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료부가세', datafield: 'DIFF_VAT_AMNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+
+               {
+                   text: '건수', datafield: 'PG_CLOSE_CNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '승인액', datafield: 'PG_PAY_AMNT', width: 140, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '입금예정액', datafield: 'PG_RECP_SCHEDULED_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료', datafield: 'PG_FEE_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료공급가액', datafield: 'PG_FEE_SUPPLY_AMNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료부가세', datafield: 'PG_VAT_AMNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+
+               {
+                   text: '건수', datafield: 'AUC_CLOSE_CNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '승인액', datafield: 'AUC_PAY_AMNT', width: 140, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '입금예정액', datafield: 'AUC_RECP_SCHEDULED_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료', datafield: 'AUC_FEE_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료공급가액', datafield: 'AUC_FEE_SUPPLY_AMNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+               {
+                   text: '수수료부가세', datafield: 'AUC_VAT_AMNT', width: 90, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n', cellsrenderer: cellsrenderer_1
+                   , aggregates: aggregates_1
+                   , aggregatesrenderer: aggregatesrenderer_1
+               },
+           ],
+           columngroups: [
+               { text: 'E-branch', align: 'center', name: 'grpEbranch' },
+               { text: '차이', align: 'center', name: 'divDiff' },
+               { text: 'PG', align: 'center', name: 'divPG' },
+               { text: 'Auction', align: 'center', name: 'divAuction' }
+           ],
+       });
+   }
+}
+
+$(grid1.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid1.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid1.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid1.grid_id).jqxGrid('render'); }, 10);
+});
+
+var cellsrenderer_1 = function (index, datafield, value, defaultHtml, column, rowdata) {
+    var element = $(defaultHtml);
+
+    if (rowdata['STATUS_CODE'] == '999') {
+        if (datafield == "DIFF_CLOSE_CNT" || datafield == "DIFF_PAY_AMNT" || datafield == "DIFF_RECP_SCHEDULED_AMNT" || datafield == "DIFF_FEE_AMNT" || datafield == "DIFF_FEE_SUPPLY_AMNT" || datafield == "DIFF_VAT_AMNT") {
+            if (value < 0) {
+                element.css({ 'background-color': 'azure', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0', 'color': 'red' });
+            } else {
+                element.css({ 'background-color': 'azure', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+            }
+        } else {
+            element.css({ 'background-color': 'azure', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+        }
+        return element[0].outerHTML;
+    } else if (rowdata['PAY_TYPE'] == '999') {
+        if (datafield == "DIFF_CLOSE_CNT" || datafield == "DIFF_PAY_AMNT" || datafield == "DIFF_RECP_SCHEDULED_AMNT" || datafield == "DIFF_FEE_AMNT" || datafield == "DIFF_FEE_SUPPLY_AMNT" || datafield == "DIFF_VAT_AMNT") {
+            if (value < 0) {
+                element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0', 'color': 'red' });
+            } else {
+                element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+            }
+        } else {
+            element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+        }
+        return element[0].outerHTML;
+    } else {
+        if (datafield == "DIFF_CLOSE_CNT" || datafield == "DIFF_PAY_AMNT" || datafield == "DIFF_RECP_SCHEDULED_AMNT" || datafield == "DIFF_FEE_AMNT" || datafield == "DIFF_FEE_SUPPLY_AMNT" || datafield == "DIFF_VAT_AMNT") {
+            if (value < 0) {
+                element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0', 'color': 'red' });
+            } else {
+                element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+            }
+        } else {
+            element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+
+        }
+        return element[0].outerHTML;
+    }
+}
+
+
+var aggregates_1 =  
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "CLOSE_DATE") {
+                return "전체합계";
+            } else {
+                if (record['STATUS_CODE'] == '999') {
+                    aggregatedValue = aggregatedValue + currentValue;
+                }
+                return aggregatedValue;
+            }
+        }
+    }];
+
+
+var aggregatesrenderer_1 =  function (aggregates) {
+    var renderstring = "";
+
+    $.each(aggregates, function (key, value) {
+        renderstring += '<div style="margin: 4px;">' + value + '</div>';
+    });
+    return renderstring;
+}
+
+var loadTabGrid1 = function (gubn) {
+    var pgGubn = "";
+    var fromDate = "";
+    var toDate = "";
+    var to_url = "";
+    if (gubn == 'search') {
+        pgGubn = $("#tab_1_pgGubn1").val();
+        fromDate = $("#tab_1_fromDate1").val();
+        toDate = $("#tab_1_toDate1").val();
+    }
+    var postData = { pgGubn: pgGubn, fromDate: fromDate, toDate: toDate };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectMobileReconDailyPost",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid1.grid_id).jqxGrid('clear');
+            $(grid1.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'CLOSE_DATE',    type: 'string' },
+                    { name: 'PAY_TYPE',      type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+                    { name: 'STATUS_CODE',   type: 'string' },
+                    { name: 'STATUS_NAME',   type: 'string' },
+
+                    { name: 'DIFF_CLOSE_CNT', type: 'number' },
+                    { name: 'DIFF_PAY_AMNT',  type: 'number' },
+                    { name: 'DIFF_RECP_SCHEDULED_AMNT', type: 'number' },
+                    { name: 'DIFF_FEE_AMNT', type: 'number' },
+                    { name: 'DIFF_FEE_SUPPLY_AMNT', type: 'number' },
+                    { name: 'DIFF_VAT_AMNT', type: 'number' },
+
+                    { name: 'PG_CLOSE_CNT', type: 'number' },
+                    { name: 'PG_PAY_AMNT',  type: 'number' },
+                    { name: 'PG_RECP_SCHEDULED_AMNT', type: 'number' },
+                    { name: 'PG_FEE_AMNT',            type: 'number' },
+                    { name: 'PG_FEE_SUPPLY_AMNT',     type: 'number' },
+                    { name: 'PG_VAT_AMNT',            type: 'number' },
+
+                    { name: 'AUC_CLOSE_CNT', type: 'number' },
+                    { name: 'AUC_PAY_AMNT', type: 'number' },
+                    { name: 'AUC_RECP_SCHEDULED_AMNT', type: 'number' },
+                    { name: 'AUC_FEE_AMNT', type: 'number' },
+                    { name: 'AUC_FEE_SUPPLY_AMNT', type: 'number' },
+                    { name: 'AUC_VAT_AMNT', type: 'number' }
+                  ]
+                , id: "tab1_grid1"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid1.grid_id).jqxGrid('source', dataAdapter);
+                $(grid1.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid1.grid_init(dataAdapter);
+            }
+        }
+    });
+}

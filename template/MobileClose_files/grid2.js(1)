@@ -1,0 +1,173 @@
+﻿var grid2_2 = {
+    grid_id: "#jqxGrid2_2"
+   , grid_init: function (dataAdapter) {
+       $(grid2_2.grid_id).jqxGrid({
+           width: tab_2.grid_width,
+           height: tab_2.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               { text: 'PG_TYPE', datafield: 'PAY_TYPE', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2, hidden: true },
+               {
+                   text: 'PG', datafield: 'PAY_TYPE_NAME', width: 90, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2
+                   , aggregates: aggregates_2_2
+                   , aggregatesrenderer: aggregatesrenderer2_2
+               },
+               {
+                   text: '승인일', datafield: 'CLOSE_DATE', width: 90, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2
+               },
+               { text: 'SmileCash 적립일', datafield: 'SMILECASH_APPR_DATE', width: 110, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: 'PG 승인번호', datafield: 'PG_TXID', width: 110, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: 'SmileCash 코드', datafield: 'SMILECASH_CODE', width: 110, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: 'SmileCash 코드명', datafield: 'SMILECASH_CODE_NAME', width: 110, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: 'SmileCash 승인번호', datafield: 'SMILECASH_TXID', width: 110, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               {
+                   text: '환불금액', datafield: 'REFUND_AMNT', width: 140, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer2_2
+                   , aggregates: aggregates_2_2
+                   , aggregatesrenderer: aggregatesrenderer2_2
+               },
+               {
+                   text: '원승인금액', datafield: 'CLOSE_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer2_2
+                   , aggregates: aggregates_2_2
+                   , aggregatesrenderer: aggregatesrenderer2_2
+               },
+               {
+                   text: '승인실패사유', datafield: 'APPR_ADD', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2
+               },
+               { text: '고객ID', datafield: 'BUYER_ID', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '결제번호', datafield: 'PAY_NO', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '주문번호', datafield: 'ORDER_NO', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '배송비결제번호', datafield: 'SHIPPING_SEQNO', width: 140, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '휴대폰번호', datafield: 'HP_NO', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '판매자ID', datafield: 'SELLER_ID', width: 100, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '상품번호', datafield: 'ITEM_CODE', width: 140, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+               { text: '상품명', datafield: 'ITEMNAME', width: 240, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer2_2 },
+           ],
+       });
+   }
+}
+
+var cellsrenderer2_2 = function (index, datafield, value, defaultHtml, column, rowdata) {
+    var element = $(defaultHtml);
+    var renderstring = "";
+
+    if (rowdata['GUBN'] == '1' || rowdata['GUBN'] == '2') {
+        element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0px' });
+        return element[0].outerHTML;
+    } else {
+        element.css({ 'background-color': '#FFFFFF', 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0px' });
+        return element[0].outerHTML;
+    }
+//    return renderstring;
+}
+$(grid2_2.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2_2.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid2_2.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2_2.grid_id).jqxGrid('render'); }, 10);
+});
+
+
+var aggregates_2_2 =  
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "PAY_TYPE_NAME") {
+                return "전체합계";
+            } else {
+                aggregatedValue = aggregatedValue + currentValue;
+                return aggregatedValue;
+            }
+        }
+    }];
+
+
+var aggregatesrenderer2_2 = function (aggregates) {
+    var renderstring = "";
+
+    $.each(aggregates, function (key, value) {
+        renderstring += '<div style="position: relative; margin: 4px; overflow: hidden;">' + value + '</div>';
+    });
+    return renderstring;
+}
+
+var loadTabGrid2_2 = function (gubn) {
+    var pgGubn = "";
+    var close_code = "";
+    var fromDate = "";
+    var toDate = "";
+    var processCode = "";
+    var searchCode = "";
+    var searchValue = "";
+    if (gubn == 'search') {
+        pgGubn = $("#tab_2_pgGubn2").val();
+        close_code = $("#tab_2_close_code2").val();
+        fromDate = $("#tab_2_fromDate2").val();
+        toDate = $("#tab_2_toDate2").val();
+        processCode = $("#tab_2_processCode2").val();
+        searchCode = $("#tab_2_searchCode2").val();
+        searchValue = $("#tab_2_searchValue2").val();
+    }
+    var postData = { pgGubn: pgGubn, close_code: close_code, fromDate: fromDate, toDate: toDate,  processCode: processCode, searchCode: searchCode, searchValue: searchValue };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectSmailCash2",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid2_2.grid_id).jqxGrid('clear');
+            $(grid2_2.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'PG_TYPE', type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+                    { name: 'CLOSE_DATE', type: 'string' },
+                    { name: 'SMILECASH_APPR_DATE', type: 'string' },
+                    { name: 'PG_TXID', type: 'string' },
+                    { name: 'SMILECASH_CODE', type: 'string' },
+                    { name: 'SMILECASH_CODE_NAME', type: 'string' },
+                    { name: 'SMILECASH_TXID', type: 'string' },
+
+                    { name: 'REFUND_AMNT', type: 'number' },
+                    { name: 'CLOSE_AMNT', type: 'number' },
+                    { name: 'APPR_ADD', type: 'string' },
+
+                    { name: 'BUYER_ID', type: 'string' },
+                    { name: 'PAY_NO', type: 'string' },
+                    { name: 'ORDER_NO', type: 'string' },
+                    { name: 'SHIPPING_SEQNO', type: 'string' },
+                    { name: 'HP_NO', type: 'string' },
+                    { name: 'SELLER_ID', type: 'string' },
+                    { name: 'ITEM_CODE', type: 'string' },
+                    { name: 'ITEMNAME', type: 'string' },
+               ]
+                , id: "tab2_grid2_2"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid2_2.grid_id).jqxGrid('source', dataAdapter);
+                $(grid2_2.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid2_2.grid_init(dataAdapter);
+            }
+        }
+    });
+}

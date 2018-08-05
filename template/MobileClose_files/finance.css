@@ -1,0 +1,374 @@
+﻿@charset "utf-8";
+/*@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
+
+/* reset */
+html {width:100%;height:100%;}
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {margin:0;padding:0;}
+body {width:auto;height:100%;line-height:100%;border:0;}
+body,input,textarea,select,button {font-size:10px;color:#7a7d81;font-family: Gulim,Dotum,"NanumGothic", sans-serif;font-weight:600;}
+
+.wrapper {
+    width:auto;
+    _width:expression(document.body.clientWidth < 1029 ? "1028px":"auto");
+    height:auto;
+    line-height:100%;
+    min-width:1028px;
+    border:0px solid #000000;
+}
+
+
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+fieldset, img {border:0;}
+table {border-collapse:collapse;border-spacing:0;}
+ul, ol, li, dl, dt, dd {list-style:none;}
+address, var, em, dfn {font-style:normal;}
+.blind, legend {display:block;overflow:hidden;position:absolute;top:-1000em;left:0;font-size:0;line-height:0;text-indent:-1000em;}
+caption, hr {display:none !important;}
+a:link, a:visited, a:active {color:#7a7d81;text-decoration:none;}
+a:hover {color:#7a7d81;text-decoration:none;cursor:pointer;}
+button {border:0;cursor:pointer;}
+label {cursor:pointer;}
+
+/* Basic Style */
+.float_left {float:left !important;}
+.float_right {float:right !important;}
+.clear {*zoom:1;}
+.clear:after {content:"";display:block;clear:both;}
+.clear_left {clear:left;}
+.clear_right {clear:right;}
+.clear_both {clear:both;}
+.txt_center {text-align:center !important;}
+.txt_left {text-align:left !important;}
+.txt_right {text-align:right !important;}
+.bg_none {background:none !important;} 
+.border_none {border:none !important;}
+.show, .block {display:block !important;}
+.hide, .dp_none {display:none !important;}
+table.fixed {table-layout:fixed;}
+.bold {font-weight:bold;}
+.hidden {visibility:hidden;}
+.lsc0 {letter-spacing:0;}
+
+#wrap { height: 100%; width: 1240px; margin: 0 auto 0; }
+
+/* input */ 
+.txt {margin:0;padding:0 0 0 9px;height:25px;vertical-align:middle;font-weight:normal;border:1px solid #d2d6d9;line-height:25px;}
+.chk {display:inline-block;margin:0;padding:0;width:13px;height:13px;vertical-align:-2px;*vertical-align:middle;}
+.label {margin:0 0 0 10px;}
+.ddl {margin:0;padding:0 0 0 9px;height:25px;vertical-align:middle;font-weight:normal;border:1px solid #d2d6d9;line-height:25px;}
+
+/* select */
+.ui-selectbox {z-index:3;display:inline-block;*display:inline;*zoom:1;position:relative;*margin-right:4px;font-weight:normal;}
+.ui-selectbox a {overflow:hidden;display:block;position:relative;height:33px;padding:0 30px 0 9px;line-height:33px;border:1px solid #d2d6d9;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_select.gif") no-repeat 100% 0 #fff;}
+.ui-selectbox .ui-radiobox-hide {z-index:10000;position:absolute;top:-10000em;}
+.ui-radiobox-veiw .ui-radiobox-hide {position:absolute;top:34px;left:0;width:100%;}
+.ui-radiobox-veiw {z-index:4;}
+.ui-selectbox ul {overflow-y:auto;overflow-x:hidden;position:relative;padding:5px 0;max-height:150px;border:1px solid #d2d6d9;background-color:#fff;}
+.ui-selectbox li {position:relative;height:20px;}
+.ui-selectbox li label {z-index:2;display:block !important;position:absolute;width:100% !important;height:20px;color:#3d3d3d;background-color:#fff;}
+.ui-selectbox li label:hover,
+.ui-selectbox li label.on {background-color:#efefef;}
+.ui-selectbox li label .radio_text {overflow:hidden;display:block;padding:2px 0 0 12px;height:16px;line-height:18px;}
+.ui-selectbox li input {z-index:1;position:absolute;left:-1000em;width:0px;height:0px;}
+
+/* btn */
+button.btn-excel { display: inline-block; margin: 0; padding: 0; padding-right: 13px; height: 29px; border: 0; background:url("https://pics.esmplus.com/front/icm/images/btn/btn_excel.gif") no-repeat 100% 0; overflow: visible;}
+button.btn-excel { *width: 145px; }
+button.btn-excel em { display: block; height: 29px; padding-left: 31px; font-size: 11px; line-height: 29px; background:url("https://pics.esmplus.com/front/icm/images/btn/btn_excel.gif") no-repeat 0 0;}
+.btn-header-login {display:inline-block;padding:0 1px 0 0;vertical-align:middle;line-height:24px;cursor:pointer;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_header_login.gif") no-repeat 100% 0;}
+.btn-header-login span {display:inline-block;padding:0 0 0 1px;min-width:64px;height:24px;text-align:center;font-size:10px;color:#fff;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_header_login.gif") no-repeat 0 0;}
+
+.btn_type2 {display:inline-block;padding:0 1px 0 0;vertical-align:middle;line-height:31px;cursor:pointer;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type2.gif") no-repeat 100% 0;}
+.btn_type2 span {display:inline-block;padding:0 0 0 1px;min-width:88px;height:31px;text-align:center;font-size:13px;color:#fff;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type2.gif") no-repeat 0 0;}
+
+.btn_type3 {display:inline-block;padding:0 1px 0 0;vertical-align:middle;line-height:31px;cursor:pointer;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type3.gif") no-repeat 100% 0;}
+.btn_type3 span {display:inline-block;padding:0 0 0 1px;min-width:88px;height:31px;text-align:center;font-size:13px;color:#fff;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type3.gif") no-repeat 0 0;}
+
+.btn_type5 {display:inline-block;padding:0 1px 0 0;vertical-align:middle;line-height:35px;cursor:pointer;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type5.gif") no-repeat 100% 0;}
+.btn_type5 span {display:inline-block;padding:0 0 0 1px;min-width:102px;height:35px;text-align:center;font-size:13px;color:#fff;background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type5.gif") no-repeat 0 0;}
+
+.button-state-loading
+{
+    /* disabled 된 버튼에는 cursor 가 작동하지 않는다. */
+    cursor: progress !important;
+
+    -webkit-animation-name: progress_button_loading;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+
+    animation-name: progress_button_loading;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes progress_button_loading
+{
+    0% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.6; }
+}
+
+/* login */
+#login {position:relative;width:100%;height:100%;background:url("https://pics.esmplus.com/front/icm/images/bg/bg_login.gif") no-repeat 50% 50% #313c43;}
+.login_inner {position:absolute;top:50%;left:50%;margin:-223px 0 0 -283px;width:566px;}
+.login_inner .copyright {text-align:center;line-height:18px;font-size:11px;color:#7e8c9f;font-weight:normal;}
+.login_cont {margin:0 0 18px 0;padding:4px 12px 12px 5px;width:549px;height:376px;background:url("https://pics.esmplus.com/front/icm/images/bg/bg_login_area.png") no-repeat 0 0;}
+.login_cont h1 {margin:60px 0 33px 0;text-align:center;}/* Finance_System */
+.login_area {margin:0 auto;width:352px;}
+.login_area input[type="text"],
+.login_area input[type="password"] {margin:1px 0 0 60px;padding:0 0 0 15px;width:275px;height:37px;line-height:34px;color:#d3e2eb;border:0 none;background-color:#60707a;}
+.login_area .id,
+.login_area .pw {position:relative;margin:0 0 15px 0;width:352px;height:40px;color:#d3e2eb;border:0 none;}
+.login_area .id label,
+.login_area .pw label {position:absolute;top:12px;left:76px;font-weight:normal;}
+.login_area .id {background:url("https://pics.esmplus.com/front/icm/images/bg/bg_id_input.gif") no-repeat 0 0;}
+.login_area .pw {background:url("https://pics.esmplus.com/front/icm/images/bg/bg_pw_input.gif") no-repeat 0 0;}
+.login_area .login_btn {overflow:hidden;}
+.login_area .login_btn a {float:right;}
+.login_area .login_btn .login_txt {float:left;margin:0 0 0 6px;font-style:italic;font-size:11px;color:#b8cdda;font-weight:normal;} /* WPRT-134 */
+.login_area .login_btn .login_txt.login_txt_btm {margin-top:5px;line-height:15px;} /* WPRT-134 */
+
+/* header */
+.header { position: relative; width:100%;  height: 114px; z-index: 10; }
+.header_block {position: relative; background-color:#313c43; min-width: 1240px;  }
+.header h1 {position:absolute;top:5px;left: 40px;}/* Finance_System */
+.header .login_set {position:absolute;top:20px;right:40px;}
+.header .login_set .login_txt {display:inline-block; margin:0 7px 0 0; padding:0 0 0 7px; line-height:15px; color:#a0a8ad; background: url("https://pics.esmplus.com/front/icm/images/icon/ico_dot.gif") no-repeat 0 7px;}
+.header .login_set .login_txt em {color:#fff;}
+.header .login_set .btn-header-login { margin-left: 2px; }
+.header .navigation { text-align:center; height:60px;}
+.header .menu_list { *zoom:1;display: inline-block; *display:inline; }
+.header .menu_list:after {content:"";*display:block;clear:both;}
+.header .menu_list > li { float: left; margin: 0 0 0 -1px; font-size: 13px; line-height: 60px;  }
+.header .menu_list > li > a { display:block; width:135px; height:60px; color:#a0a8ad; border-right:1px solid #465056; border-left:1px solid #465056;}
+.header .menu_list > li > a:hover,
+.header .menu_list > li.ov > a,
+.header .menu_list > li.on > a { width:138px; color:#fff;border:0 none;background-color:#f85403; }
+.header .menu_list > li.ov ul { z-index: 2;}
+.header .menu_list > li.on ul { z-index: 1;}
+.header .menu_list > li.ov ul,
+.header .menu_list > li.on ul { display: block;}
+.header .menu_list li ul { position:absolute; top:60px; left:0; width:100%; padding-bottom: 4px; height:50px; line-height:50px; *margin-left: -20px; *padding-right: 20px; background: url("https://pics.esmplus.com/front/icm/images/bg/bg_gnb_menu.png") repeat-x 0 100%; display: none;}
+.header .menu_list > li > ul > li:hover,
+.header .menu_list > li > ul > li.ov,
+.header .menu_list > li > ul > li.on { color:#f85403; }
+.header .menu_list li ul li { vertical-align : text-top; display:inline-block; *display:inline; margin:0 0 0 30px; font-size:12px; *zoom: 1;}
+.header .menu_list li ul li div ul { position:relative !important; padding: 5 0 5 0; margin:0 0 0 0px; top:-5px !important; width:200px; height:5px !important; line-height:0px !important;}
+.header .menu_list li ul li div ul li { display:block; border-radius:7px; width:200px; height:25px; margin-left:0px !important; background-color:#FFFFFF;}
+.header .menu_list li ul li a { padding:0 0 0 5px; line-height:50px; color:#313c43; }
+.header .menu_list li ul li div ul li a { line-height:20px  !important; }
+.header .menu_list li ul li.on  a,
+.header .menu_list li ul li a:hover { color:#f85403; background-position:0 -14px; }
+
+
+/* 검색결과 - header */
+.sr-header { width:100%; height:50px; background-color:#313c43; min-width: 1200px;}
+.sr-header_block { position:relative;  padding:11px 50px 0; *zoom: 1; }
+.sr-header_block:after { clear:both; display:block; height:0; content:"";}
+.sr-header_search { float:left;}
+.sr-header_search .search_tit {display:inline-block; margin:0 27px 0 0; font-size:16px; color:#fff; vertical-align:middle;}
+.sr-header_search .search_input {width:264px; height:28px; margin:0 2px 0 0; padding:0 0 0 9px; font-size:12px; line-height:26px; color:#fff; border:0 none; background:url("https://pics.esmplus.com/front/icm/images/bg/bg_search_input.gif") no-repeat 0 0;}
+.sr-header_search input { vertical-align:middle; }
+.sr-header_search-filter { float:right; margin:6px 0 0 0; font-size:13px; color:#d4dee4; }
+.sr-header_search-filter label { margin:0 0 0 16px}
+.sr-container { position: relative; width: 100%;}
+.sr-container_block { width: 100%;}
+.sr-container iframe { height: 100%; }
+
+
+#container { position: relative; padding: 0 40px; min-width: 1160px; max-width: 1280px; margin: 0 auto;}
+#footer { position: relative; width: 100%; min-width: 1240px; margin-top: 5px; padding: 10px 0 10px; overflow: hidden; *zoom: 1; border-top: 1px solid #ecf0f3;}
+#footer .copyright { float: left; padding-left: 40px; font-size: 11px; color: #828589;}
+#footer .family_logo { float: right; padding-right: 40px;}
+
+
+/* 검색 */
+.search_panel_wrap {  *zoom: 1; }
+.search_panel_wrap:after {clear:both;display:block;height:0;content:"";}
+.search_panel_title { margin:0 0 0 20px; *zoom: 1;}
+.search_panel_title:after {clear:both;display:block;height:0;content:"";}
+.search_panel_title h4 { float: left; font-size:20px; color:#313c43;}
+.search_panel_title .panel_tip { float: right; margin-top: 12px; font-size:11px; line-height:15px; color:#a0a8ad;}
+.search_panel { margin:0 0 0px 0; padding:0px 0px 0px 15px; border:1px solid #d6dce0; background-color:#ecf0f3;}
+.search_panel table {width:100%; table-layout: fixed;  }
+.search_panel table tr.tr { height:40px;border-top:0px solid #d9dfe2;border-bottom:0px solid #d9dfe2;}
+.search_panel table td { vertical-align:middle; text-align:left; border-right:0px solid #d9dfe2;}
+.search_panel table .td { margin:-13px 0 0 0;padding:0 0 0 10px; *zoom:1;}
+.search_panel table .td:after{clear:both;display:block;height:0;content:"";}
+.search_panel table td.first .td { padding-left: 0;}
+.search_panel table td.last { vertical-align:middle; text-align: left; border-right:0 none; }
+.search_panel table td.last .td { margin:0 0 0 10px;padding:0; }
+.search_panel table .field { float:left; margin:0px 0px 0 0; min-height:58px; }
+.search_panel table .field dt { margin:0 0 9px 0; color:#484d50; }
+.search_panel table .field_site {}
+.search_panel table .field_corner {}
+.search_panel table .field_depth1 {}
+.search_panel table .field_depth2 {}
+.search_panel table .field_word { }
+.search_panel table .field_date { }
+.search_panel table .field_date .type {display:inline-block; margin:0 0 0 15px;}
+.search_panel table .field_order .type {display:inline-block; margin: 10px 0 0 0; *margin-top: 11px;}
+.search_panel .search_panel_submit,
+.search_panel .search_panel_submit em { display:inline-block; margin: 0; height: 41px; border: 0; background:url("https://pics.esmplus.com/front/icm/images/btn/btn_type1.gif") no-repeat 0 0;}
+.search_panel .search_panel_submit { position: relative; width: 150px; }
+.search_panel .search_panel_submit em { top: 0; left: 10px; width: 130px; font-size:16px; line-height: 41px; color:#fff; background-position: 100% 0; text-align: center;}
+
+
+.grid_wrap { width:100%; margin: 0 0 10px 0; overflow:hidden;  }
+
+/* 그리드-UTIL */
+.grid_util { *zoom:1;margin:10px 0 0 0; }
+.grid_util:after {clear:both;display:block;height:0;content:"";}
+.grid_util_cnt { float:left; font-size:14px; line-height:28px; color:#484d50; }
+.grid_util_cnt .cnt { color:#f85403;}
+.grid_util_title { margin:0; float:left; font-size:14px; line-height:28px; color:#484d50; }
+/*.grid_util_btn { float:right; }*/
+.grid_util .panel_tip { float: right; margin-top: 12px; font-size:11px; line-height:15px; color:#a0a8ad;}
+
+.grid_info_header {*zoom:1;padding:14px 15px 15px 15px;color:#484d50;border-top:1px solid #d6dce0;border-right:1px solid #d6dce0;border-left:1px solid #d6dce0;background-color:#ecf0f3;}
+.grid_info_header:after {clear:both;display:block;height:0;content:"";}
+.grid_info_header .strong {color:#f85403;}
+.grid_info_header .info_left {float:left;}
+.grid_info_header .info_right {float:right; font-weight: normal;}
+.grid_info_header .info_right strong {font-weight: bold;}
+
+/* 그리드 */
+.grid_block { position: relative}
+.grid_header { position: relative; background-color:#a8acaf; overflow: hidden; z-index: 2; margin-bottom: -1px; }
+.grid_header_block { background-color:#a8acaf; }
+.grid_header table {position: relative; width: 100%; table-layout: fixed; }
+.grid_header th { text-align:center;color:#fefefe;border:1px solid #999d9f;background-color:#a8acaf;font-weight: bold; }
+.grid_header tr .last { border-right: 1px solid #a8acaf; }
+.grid_header tr .last .th { padding-left: 17px;}
+.grid_header tr .blank { border-left: 1px solid #a8acaf}
+.grid_header .th { position:relative; padding:11px 0 12px 0;}
+.grid_header .btn_sorting {position:absolute;top:50%;right:5px;margin:-15px 0 0 0;}
+.grid_header .btn_sorting a {display:block;}
+
+.grid_table_type1 th span {	height: 100%; padding-top: 10px; }
+.grid_table_type1 span.grid_header_resize { float: right; cursor: col-resize; }
+span[data-sorter] { cursor:pointer; }
+
+.grid_body { position: relative; overflow:auto; border:1px solid #ecf0f3; }
+.grid_body table { width: 100%; table-layout: fixed; }
+.grid_body td {text-align:center;border-top:1px solid #ecf0f3;border-bottom:1px solid #ecf0f3;border-left:1px solid #ecf0f3;font-weight:normal;}
+.grid_body tr.first td {border-top:0 none;}
+.grid_body tr td.first {border-left:0 none;}
+.grid_body .td {padding:15px 0 15px 0; font-weight:normal;}
+.grid_body td a.link {text-decoration:underline; font-weight:600; }
+.grid_body .market a { margin: 0 5px; }
+.grid_body .tleft {text-align:left;}
+.grid_body .tleft .td {padding:15px 18px 15px 18px;}
+.grid_body .tright {text-align: right;}
+.grid_body .tright .td {padding:15px 18px 15px 18px;}
+.grid_body tr.total td .td { color: #484d50; font-weight: bold; }
+.grid_body .no_data { width: 100%; text-align: center; font-size:13px;}
+
+/* 틀고정 적용 WPRT-100 */
+.grid_scroll_wrap { position: relative; background: #ecf0f3; border: 1px solid #e3e7eb}
+.grid_scroll_wrap .grid_scroll_left { position: absolute; left: 0; top: 0; border-right: 1px solid #999d9f; z-index: 2;}
+.grid_scroll_wrap .grid_scroll_left .grid_header {overflow: hidden; margin: -1px -1px 0 -1px;}
+.grid_scroll_wrap .grid_scroll_left .grid_body {overflow: hidden;background: #fff; border: 0}
+.grid_scroll_wrap .grid_scroll_right { position: relative; z-index: 1;}
+.grid_scroll_wrap .grid_scroll_right .grid_header {overflow: hidden; margin: -1px -1px 0 -1px;}
+.grid_scroll_wrap .grid_scroll_right .grid_body { background: #fff; border: 0; }
+.grid_scroll_social_best tbody tr { height: 35px;}/* 틀고정-소셜베스트 */
+.grid_scroll_social_best .grid_scroll_left .grid_body { height: 560px;}
+.grid_scroll_social_best .grid_scroll_right .grid_body {height: 578px;}
+.grid_scroll_site_detail tbody tr { height: 35px;}/* 틀고정-사이트별 상세조회 */
+.grid_scroll_site_detail .grid_scroll_left .grid_body { height: 300px;}
+.grid_scroll_site_detail .grid_scroll_right .grid_body {height: 578px;}
+
+.grid_info_bottom {margin:-1px 0 0 0;padding:11px 20px 11px 20px;border:1px solid #d6dce0;background-color:#ecf0f3;}
+.grid_info_bottom .results_search {text-align:right;}
+.grid_info_bottom .results_search_calendar {display:inline-block;margin:0 16px 0 0;padding:0 20px 0 0;border-right:1px solid #d9dfe2;}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {margin: 0 0 0 33px; /* IE indents via margin-left */}
+ol.linenums li {padding-left: 12px;color: #bebec5;line-height: 20px;text-shadow: 0 1px 0 #fff;}
+
+/* calendar */
+#ui-datepicker-div {z-index:99999;display:none;border:1px solid #65696f;background-color:#fff;}
+.ui-datepicker-header {padding:5px 0;text-align:center;background-color:#e8e8ed;}
+.ui-datepicker-header select {font:normal normal 12px/1.5 dotum,"돋움";margin:0 2px;}
+.ui-datepicker-calendar {background-color:#fff;border-top:1px solid #c9cbd6;border-left:1px solid #c9cbd6;margin:10px;}
+.ui-datepicker-trigger {position:relative;top:1px;*top:2px;right:1px;vertical-align:middle;margin:0 0 0 4px;cursor:pointer;}
+.calendar {display:inline-block;position:relative;}
+.dash {display:inline-block;margin:0 auto;width:12px;text-align:center;}
+
+
+/* 레이어팝업 */
+.layer_wrap {z-index:1000; position:fixed;_position:absolute; top:0; left:0; width:100%;height:100%; }
+.layer_wrap .layer_dim {position:absolute;top:0;left:0;width:100%;height:100%;opacity:.5;filter:alpha(opacity=50);}
+.layer_wrap .layer_block {position:absolute;top:50%;left:50%;background-color:#fff;}
+.layer_wrap .layer_btn_close {display:inline-block;position:absolute;top:15px;right:15px;padding:5px;}
+.layer_wrap .layer_cont {padding:33px 40px 40px 40px;}
+.layer_wrap .layer_header {*zoom:1;margin:0 0 15px 0;padding:20px 0 0 0;}
+.layer_wrap .layer_header:after {clear:both;display:block;height:0;content:"";}
+.layer_wrap .layer_header .layer_title {float:left;margin:3px 0 0 0;}
+.layer_wrap .layer_header .btn-excel {float:right;}
+.layer_wrap .layer_title {margin:0 0 15px 0;font-size:20px;color:#313c43;}
+.layer_wrap .layer_tbl {margin:10px 0 0 0;border:1px solid #d6dce0;}
+.layer_wrap .layer_tbl.first {margin-top:0;}
+.layer_wrap .layer_tbl table {width:100%;}
+.layer_wrap .layer_tbl th {text-align:center;font-size:14px;color:#313c43;border-top:1px solid #d9dfe2;background-color:#ecf0f3;} /* 2014-10-21 */
+.layer_wrap .layer_tbl .th {padding:18px 0 19px 0;}
+.layer_wrap .layer_tbl td {text-align:left;font-size:13px;border-top:1px solid #d9dfe2;border-left:1px solid #d6dce0;} /* 2014-10-21 */
+.layer_wrap .layer_tbl .td {padding:18px 20px 19px 20px;}
+.layer_wrap .layer_tbl tr.first th,
+.layer_wrap .layer_tbl tr.first td {border-top:0 none;}
+.layer_wrap .layer_btn_center {margin:20px 0 0 0;text-align:center;}
+.layer_wrap .layer_btn_center a {margin:0 0 0 1px;}
+.layer_wrap .layer_btn_right {margin:20px 0 0 0;text-align:right;}
+.layer_wrap .layer_btn_right a {margin:0 0 0 1px;}
+.layer_wrap .layer_btn_left {margin:20px 0 0 0;} /* 2014-10-21 */
+.layer_wrap .layer_btn_left a {margin:0 1px 0 0;} /* 2014-10-21 */
+
+/* 옵션 상세 정보 */
+.layer_option_detail_info .layer_block { margin:-283px 0 0 -300px; width:600px; height: 566px;}
+.layer_option_detail_info .grid_body { overflow-x: hidden; overflow-y: scroll;}
+
+/* 실적 상세 정보 */
+.layer_qty_selling .layer_block { margin:-336px 0 0 -400px; width:800px; height: 672px;}
+.layer_qty_selling .grid_body { overflow-x: hidden; overflow-y: scroll;}
+
+/* 사용자 PC에 저장 레이어 */
+.layer_save_file .layer_block { margin:-123px 0 0 -322px;width:644px; height: 246px;}
+.layer_save_file .layer_save_set {padding:24px 0 24px 0;text-align:center;border:1px solid #d6dce0;background-color:#ecf0f3;}
+.layer_save_file .layer_save_set .file_input {margin:0 0 0 5px;padding:0 0 0 9px;width:305px;height:34px;vertical-align:middle;line-height:30px;border:0 none;background:url("https://pics.esmplus.com/front/icm/images/bg/bg_file_input.gif") no-repeat 0 0;}
+.layer_save_file .layer_save_set .btn_file {display:inline-block;overflow:hidden;position:relative;margin:0 0 0 1px;width:90px;height:34px;vertical-align:middle;cursor:pointer;background:url("https://pics.esmplus.com/front/icm/images/bg/bg_path_change.gif") no-repeat 0 0;}
+.layer_save_file .layer_save_set .btn_file .file {position:absolute;top:0;left:-1px;filter:alpha(opacity=0);opacity:0;width:92px;height:34px;cursor:pointer;font-size:200px;background:none;}
+
+/* 권한 상세 설정 레이어 */
+.layer_auth_detail .layer_block { margin:-258px 0 0 -547px;width:1094px; height:520px;}
+.layer_auth_detail .layer_farea {*zoom:1;}
+.layer_auth_detail .layer_farea:after {clear:both;display:block;height:0;content:"";}
+.layer_auth_detail .layer_farea .layer_fleft {float:left;width:520px;}
+.layer_auth_detail .layer_farea .layer_fright {float:right;width:456px;}
+.layer_auth_detail .layer_farea .layer_fleft .td {padding:9px 20px 9px 20px;}
+.layer_auth_detail .label_list {margin:0 0 26px 0;}
+.layer_auth_detail .label_list li {margin-top:8px;width:157px;line-height:20px;}
+.layer_auth_detail .label_list li:first-child {margin-top:0;}
+.layer_auth_detail .grid_wrap { margin-bottom: 10px;}
+.layer_auth_detail .grid_body { overflow-x: hidden; overflow-y: scroll;}
+.layer_auth_detail .grid_body .no_data {padding:145px 0 145px 0;width:auto;border-bottom:0 none;border-left:0 none;}
+
+/* 알림 */
+.layer_alert_line .layer_block { margin:-115px 0 0 -268px;width:536px; height: 230px;}
+.layer_alert_line .layer_msg_box {padding:24px 0 24px 0;text-align:center;border:1px solid #d6dce0;background-color:#ecf0f3; color: #313c43;}
+
+/* 집계현황 WPRT-68 */
+.aggregate-area {overflow:hidden;margin:-25px 0 8px 0;}
+.aggregate-area .aggregate-list {overflow:hidden;float:right;}
+.aggregate-area .aggregate-list li {float:left;margin:0 0 0 15px;padding:0 0 0 15px;line-height:18px;background:url("https://pics.esmplus.com/front/icm/images/bg/bg_line.gif") no-repeat 0 3px;}
+.aggregate-area .aggregate-list li:first-child {margin-left:0;padding-left:0;background:none;}
+.aggregate-area .aggregate-list .ico-search {display:inline-block;padding:0 28px 0 0;background:url("https://pics.esmplus.com/front/icm/images/icon/ico_search.gif") no-repeat 100% 1px;}
+.aggregate-area .aggregate-list .ico-check {display:inline-block;padding:0 28px 0 0;background:url("https://pics.esmplus.com/front/icm/images/icon/ico_check.gif") no-repeat 100% 3px;}
+
+.input-title {margin:0 20px 9px 0; color:#484d50;}
+
+.grid_type1 .grid_table_type1 table th { text-align : center;}
+
+
+/* bootstrap popup */
+.modal-dialog .modal-content .form-group label {margin-bottom:5px;}

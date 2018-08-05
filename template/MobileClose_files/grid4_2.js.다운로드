@@ -1,0 +1,120 @@
+﻿var grid4_2 = {
+    grid_id: "#tab1_4_jqxGrid_2"
+   , grid_init: function (dataAdapter) {
+       $(grid4_2.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: tab_1.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: '승인일', datafield: 'CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center'
+                   , aggregates: aggregates4_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: 'PG코드', datafield: 'PAY_TYPE', width: 1, align: 'center', cellsalign: 'center', hidden: true
+               },
+               { text: 'PG', datafield: 'PAY_TYPE_NAME', width: 200, align: 'center', cellsalign: 'center' },
+               {
+                   text: '결제번호', datafield: 'PAY_NO', width: 200, align: 'center', cellsalign: 'center'
+               },
+               {
+                   text: '주문번호', datafield: 'ORDER_NO', width: 190, align: 'center', cellsalign: 'center'
+               },
+
+               {
+                   text: '배송비결제번호', datafield: 'TXID', width: 200, align: 'center', cellsalign: 'center'
+               },
+               {
+                   text: '금액', datafield: 'CLOSE_AMNT', width: 270, align: 'center', cellsalign: 'right', cellsformat: 'n'
+                   , aggregates: aggregates4_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+           ],
+       });
+   }
+}
+
+$(grid4_2.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid4_2.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid4_2.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid4_2.grid_id).jqxGrid('render'); }, 10);
+});
+
+var aggregates4_2 =  
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "CLOSE_DATE") {
+                return "전체합계";
+            } else {
+                aggregatedValue = aggregatedValue + currentValue;
+                return aggregatedValue;
+            }
+        }
+    }];
+
+var loadTabGrid4_2 = function (gubn) {
+    var pgGubn = "";
+    var fromDate = "";
+    var toDate = "";
+    var check_sum = "";
+    var to_url = "";
+    if (gubn == 'search') {
+        pgGubn = $("#tab_1_status4").val();
+        fromDate = $("#tab_1_fromDate4").val();
+        toDate = $("#tab_1_toDate4").val();
+        check_sum = $("#tab_1_check_sum4").val();
+    }
+    var postData = { pgGubn: pgGubn, fromDate: fromDate, toDate: toDate, check_sum: check_sum };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectCLOSE_DAILY_SUM",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid4_2.grid_id).jqxGrid('clear');
+            $(grid4_2.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'CLOSE_DATE',    type: 'string' },
+                    { name: 'PAY_TYPE',      type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+
+                    { name: 'PAY_NO', type: 'string' },
+                    { name: 'ORDER_NO', type: 'string' },
+                    { name: 'TXID', type: 'string' },
+                    { name: 'CLOSE_AMNT', type: 'number' },
+                  ]
+                , id: "tab1_grid4_2"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid4_2.grid_id).jqxGrid('source', dataAdapter);
+                $(grid4_2.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid4_2.grid_init(dataAdapter);
+            }
+        }
+    });
+}

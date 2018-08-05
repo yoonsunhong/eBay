@@ -1,0 +1,149 @@
+﻿var grid5_2 = {
+    grid_id: "#tab1_5_jqxGrid_2"
+   , grid_init: function (dataAdapter) {
+       $(grid5_2.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: tab_1.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: '날짜', datafield: 'DATES', width: 90, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer5_2
+                   , aggregates: aggregates5_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: 'STATUS_CODE', datafield: 'STATUS_CODE', width: 70, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer5_2, hidden: true
+               },
+               {
+                   text: '정상/취소', datafield: 'STATUS_NAME', width: 70, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer5_2
+               },
+               {
+                   text: '승인금액', datafield: 'CLOSE_AMNT', width: 270, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer5_2
+                   , aggregates: aggregates5_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: '수수료', datafield: 'CLOSE_FEE_AMNT', width: 260, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer5_2
+                   , aggregates: aggregates5_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: '공급가액', datafield: 'CLOSE_FEE_SUPPLY_AMNT', width: 200, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer5_2
+                   , aggregates: aggregates5_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: '부가세', datafield: 'CLOSE_FEE_VAT_AMNT', width: 250, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer5_2
+                   , aggregates: aggregates5_2
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+           ],
+       });
+   }
+}
+
+var cellsrenderer5_2 = function (index, datafield, value, defaultHtml, column, rowdata) {
+    var element = $(defaultHtml);
+    if (rowdata['STATUS_CODE'] == 9997) {
+        element.css({ 'background-color': 'azure', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        return element[0].outerHTML;
+    }
+
+    if (rowdata['PAY_TYPE'] == '9998') {
+        element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        return element[0].outerHTML;
+    }
+    return defaultHtml;
+}
+
+var aggregates5_2 =
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "DATES") {
+                return "전체합계";
+            } else {
+                if (record['STATUS_CODE'] == '9997') {
+                    aggregatedValue = aggregatedValue + currentValue;
+                }
+                return aggregatedValue;
+            }
+        }
+    }];
+
+
+
+$(grid5_2.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid5_2.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid5_2.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid5_2.grid_id).jqxGrid('render'); }, 10);
+});
+
+var loadTabGrid5_2 = function (gubn) {
+    var close_code = "";
+    var fromDate = "";
+    var toDate = "";
+    var pgGubn = "";
+    var processCode = "";
+    var searchCode = "";
+    var searchValue = "";
+    if (gubn == 'search') {
+        close_code = $("#tab_1_close_code5").val();
+        fromDate = $("#tab_1_fromDate5").val();
+        toDate = $("#tab_1_toDate5").val();
+        pgGubn = $("#tab_1_pgGubn5").val();
+        processCode = $("#tab_1_processCode5").val();
+        searchCode = $("#tab_1_searchCode5").val();
+        searchValue = $("#tab_1_searchValue5").val();
+    }
+    var postData = { close_code: close_code, fromDate: fromDate, toDate: toDate, pgGubn: pgGubn, processCode: processCode, searchCode: searchCode, searchValue: searchValue };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectCLOSE_DETAIL_SUM",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid5_2.grid_id).jqxGrid('clear');
+            $(grid5_2.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'DATES', type: 'string' },
+                    { name: 'STATUS_CODE', type: 'string' },
+                    { name: 'STATUS_NAME', type: 'string' },
+                    { name: 'CLOSE_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_SUPPLY_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_VAT_AMNT', type: 'number' },
+               ]
+                , id: "tab1_grid5_2"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid5_2.grid_id).jqxGrid('source', dataAdapter);
+                $(grid5_2.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid5_2.grid_init(dataAdapter);
+            }
+        }
+    });
+}

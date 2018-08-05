@@ -1,0 +1,92 @@
+﻿
+
+$(document).ready(function () {
+    $("#tab1_jqxexpander_1").jqxExpander({ width: '100%' });
+    $("#tab1_jqxexpander_2").jqxExpander({ width: '100%' });
+    $("#tab1_jqxexpander_3").jqxExpander({ width: '100%' });
+    $("#tab1_jqxexpander_4").jqxExpander({ width: '100%' });
+    $("#tab1_jqxexpander_5").jqxExpander({ width: '100%' });
+
+    $("#tab2_jqxexpander_1").jqxExpander({ width: '100%' });
+    $("#tab2_jqxexpander_2").jqxExpander({ width: '100%' });
+
+    $("#tab3_jqxexpander_1").jqxExpander({ width: '100%' });
+    $("#tab3_jqxexpander_2").jqxExpander({ width: '100%' });
+
+    var initWidgets = function (tab) {
+        switch (tab) {
+            case 0:
+                tab_1.init();
+                break;
+            case 1:
+                tab_2.init();
+                break;
+            case 2:
+                tab_3.init();
+                break;
+        }
+    };
+
+
+    var isAlt = false;
+    document.onkeyup = function (e) {
+        if (e.which == 18) isAlt = false;
+    }
+
+    document.onkeydown = function (e) {
+        if (e.which == 18) isAlt = true;
+        if (e.which == 49 && isAlt == true) {
+            $("#jqxTabs").jqxTabs('select', 0);
+            fnMove("tab1_jqxexpander_1");
+            $("#tab_1_fromDate1").tabIndex = -1;
+            $("#tab_1_fromDate1").focus();
+            return false;
+        }
+        if (e.which == 50 && isAlt == true) {
+            $("#jqxTabs").jqxTabs('select', 0);
+            fnMove("tab1_jqxexpander_2");
+
+            $("#tab_1_fromDate2").tabIndex = -1;
+            $("#tab_1_fromDate2").focus();
+            return false;
+        }
+        if (e.which == 51 && isAlt == true) {
+            $("#jqxTabs").jqxTabs('select', 0);
+            fnMove("tab1_jqxexpander_3");
+            $("#tab_1_fromDate3").tabIndex = -1;
+            $("#tab_1_fromDate3").focus();
+            return false;
+        }
+        if (e.which == 52 && isAlt == true) {
+            $("#jqxTabs").jqxTabs('select', 1);
+            /*
+            fnMove("tab1_jqxexpander_3");
+            $("#tab_1_fromDate3").tabIndex = -1;
+            $("#tab_1_fromDate3").focus();
+            */
+            return false;
+        }
+        if (e.which == 53 && isAlt == true) {
+            $("#jqxTabs").jqxTabs('select', 2);
+            return true;
+        }
+    }
+
+
+
+    var objTab = $('#jqxTabs').jqxTabs({ selectionTracker: true, reorder: true, animationType: 'fade', autoHeight: true, position: 'top', initTabContent: initWidgets });
+
+
+});
+
+
+
+function fnMove(id) {
+    var offset = $("#" + id).offset();
+    if (id.lastIndexOf("_1") > 0) {
+        offset = $(document.body).offset();
+    } else {
+        var offset = $("#" + id).offset();
+    }
+    $('html, body').animate({ scrollTop: offset.top }, 400);
+}

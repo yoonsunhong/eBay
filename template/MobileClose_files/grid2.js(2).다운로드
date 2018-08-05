@@ -1,0 +1,95 @@
+﻿var grid3_2 = {
+    grid_id: "#jqxFeeHistorySearch"
+   , grid_init: function (dataAdapter) {
+       $(grid3_2.grid_id).jqxGrid({
+           width: tab_3.grid_width,
+           height: tab_3.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: false,
+           showaggregates: false,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               { text: '결제선CODE', datafield: 'PAY_METHOD', width: 100, align: 'center', cellsalign: 'center', hidden: true },
+               { text: '결제선', datafield: 'PAY_METHOD_NAME', width: 100, align: 'center', cellsalign: 'center' },
+               { text: 'PGCODE', datafield: 'PAY_CODE', width: 120, align: 'center', cellsalign: 'center', hidden: true },
+               { text: 'PG', datafield: 'PAY_TYPE_NAME', width: 120, align: 'center', cellsalign: 'center' },
+               { text: '정액', datafield: 'FIXED_AMNT', width: 200, align: 'center', cellsalign: 'right', cellsformat: 'n' },
+               { text: '정률', datafield: 'FIX_RATE', width: 200, align: 'center', cellsalign: 'right', cellsformat: 'd4' },
+               { text: '비고', datafield: 'ETC', width: 250, align: 'center', cellsalign: 'left' },
+               { text: '수정자', datafield: 'UPD_OPRT', width: 100, align: 'center', cellsalign: 'center' },
+               { text: '수정일', datafield: 'UPD_DATE', width: 150, align: 'center', cellsalign: 'center' },
+           ],
+       });
+   }
+}
+
+$(grid3_2.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid3_2.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid3_2.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid3_2.grid_id).jqxGrid('render'); }, 10);
+});
+
+var loadTabGrid3_2 = function (gubn) {
+    var pay_method = "";
+    var pay_type = "";
+    var from_date = "";
+    var toDate = "";
+    if (gubn == 'search') {
+        pay_method = $("#tab_3_pay_method2").val();
+        pay_type = $("#tab_3_pay_type2").val();
+        from_date = $("#tab_3_fromDate2").val();
+        toDate = $("#tab_3_toDate2").val();
+    }
+    var postData = { fromDate: from_date, toDate: toDate, pay_method: pay_method, pay_type: pay_type };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectFEE_MANAGE_Histroy",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid3_2.grid_id).jqxGrid('clear');
+            $(grid3_2.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'PAY_METHOD', type: 'string' },
+                    { name: 'PAY_METHOD_NAME', type: 'string' },
+                    { name: 'PAY_TYPE', type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+
+                    { name: 'FIXED_AMNT', type: 'number' },
+                    { name: 'FIX_RATE', type: 'decimal' },
+                    { name: 'UPD_OPRT', type: 'string' },
+                    { name: 'UPD_DATE', type: 'string' },
+                    { name: 'ETC', type: 'string' }
+
+                  ]
+                , id: "tab3_grid2"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid3_2.grid_id).jqxGrid('source', dataAdapter);
+                $(grid3_2.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid3_2.grid_init(dataAdapter);
+            }
+        }
+    });
+}

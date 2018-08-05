@@ -1,0 +1,105 @@
+﻿var tab_2 = {
+     grid_width : (parseInt(window.container_width, 10) - 114)
+    ,grid_height : 350
+    , init: function () {
+
+        $(tab_2_close_code1).jqxComboBox(refund_close_setting);
+
+        $(tab_2_close_code1).on('change', function (event) {
+            var args = event.args;
+            if (args) {
+                // index represents the item's index.                          
+                var index = args.index;
+                var item = args.item.value;
+                if (item == 12) {
+                    $("#tab_2_dateTitle1").html("Smile Cash 처리일:");
+                } else {
+                    $("#tab_2_dateTitle1").html("환불완료일:");
+                }
+            }
+        });
+
+        $(tab_2_fromDate1).jqxDateTimeInput(carlendar_setting);
+        $('#tab_2_fromDate1 input').css('font-size', '11px');
+        $(tab_2_fromDate1).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_2_toDate1).jqxDateTimeInput(carlendar_setting);
+        $('#tab_2_toDate1 input').css('font-size', '11px');
+
+        $(tab_2_pgGubn1).jqxComboBox(pg_gubn_setting);
+        $(tab_2_processCode1).jqxComboBox(refund_processCode);
+
+        $(tab_2_searchCode1).jqxComboBox(searchCode);
+        $("#tab_2_searchValue1").jqxInput({ width: '150px', height: '20px', maxLength: 100 });
+
+
+        $(tab_2_pgGubn2).jqxComboBox(pg_gubn_setting);
+
+        $(tab_2_close_code2).jqxComboBox(refund_close_setting2);
+
+        $(tab_2_fromDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_2_fromDate2 input').css('font-size', '11px');
+        $(tab_2_fromDate2).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_2_toDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_2_toDate2 input').css('font-size', '11px');
+
+        $(tab_2_processCode2).jqxComboBox(refund_processCode2);
+
+
+        $(tab_2_searchCode2).jqxComboBox(searchCode);
+        $("#tab_2_searchValue2").jqxInput({ width: '150px', height: '20px', maxLength: 100 });
+
+        loadTabGrid2_1('init');
+        loadTabGrid2_2('init');
+
+        setTimeout(function () {
+            $(grid2_1.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid2_2.grid_id).jqxGrid('localizestrings', localizationobj);
+        }, 1000);
+    }
+
+}
+
+function DoInquery2(id) {
+    switch(id){
+        case 'tab_2_bt_Inquery1':
+            loadTabGrid2_1('search');
+            break;
+        case 'tab_2_bt_Inquery2':
+            loadTabGrid2_2('search');
+            break;
+    }
+}
+
+function DoExcel2(id) {
+    switch (id) {
+        case 'tab_2_bt_Excel1':
+            var str = '/MobileMng/MobileCloseExcel/SelectSmailCash1_Excel';
+            $("#tab_2_close_code1_h").val($("#tab_2_close_code1").val());
+            $("#tab_1_fromDate1_h").val($("#tab_1_fromDate1").val());
+            $("#tab_1_toDate1_h").val($("#tab_1_toDate1").val());
+            $("#tab_2_pgGubn1_h").val($("#tab_2_pgGubn1").val());
+            $("#tab_2_processCode1_h").val($("#tab_2_processCode1").val());
+            $("#tab_2_searchCode1_h").val($("#tab_2_searchCode1").val());
+            $("#tab_2_searchValue1_h").val($("#tab_2_searchValue1").val());
+
+            $('#searchFromTab2Grid1').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_2_bt_Excel2':
+            var str = '/MobileMng/MobileCloseExcel/SelectSmailCash2_Excel';
+            $("#tab_2_pgGubn2_h").val($("#tab_2_pgGubn2").val());
+            $("#tab_2_close_code2_h").val($("#tab_2_close_code2").val());
+            $("#tab_2_fromDate2_h").val($("#tab_2_fromDate2").val());
+            $("#tab_2_toDate2_h").val($("#tab_2_toDate2").val());
+            $("#tab_2_processCode2_h").val($("#tab_2_processCode2").val());
+            $("#tab_2_searchCode2_h").val($("#tab_2_searchCode2").val());
+            $("#tab_2_searchValue2_h").val($("#tab_2_searchValue2").val());
+
+            $('#searchFromTab2Grid2').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+
+    };
+};
+
+

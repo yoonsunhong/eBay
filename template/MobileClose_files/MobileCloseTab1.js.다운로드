@@ -1,0 +1,479 @@
+﻿window.container_width = 1280;
+window.obj_tab1 = "";
+
+var tab_1 = {
+     grid_width : (parseInt(window.container_width, 10) - 114)
+    ,grid_height : 350
+    , init: function () {
+        $(tab_1_pgGubn1).jqxComboBox(pg_gubn_setting);
+
+        $(tab_1_fromDate1).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate1 input').css('font-size', '11px');
+        $(tab_1_fromDate1).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_1_toDate1).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate1 input').css('font-size', '11px');
+
+        $(tab_1_fromDate1_sub).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate1_sub input').css('font-size', '11px');
+        $(tab_1_fromDate1_sub).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $("#btnReClose").jqxButton({ width: '100', height: '25' });
+
+        $(tab_1_toDate1_sub).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate1_sub input').css('font-size', '11px');
+
+
+        $(tab_1_same_code2).jqxComboBox(same_code_setting);
+        $(tab_1_same_code2).jqxComboBox('selectIndex', 1);
+        $(tab_1_pgGubn2).jqxComboBox(pg_gubn_setting);
+
+        $(tab_1_fromDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate2 input').css('font-size', '11px');
+        $(tab_1_fromDate2).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_1_toDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate2 input').css('font-size', '11px');
+
+        $(tab_1_status3).jqxComboBox(pay_type_setting);
+        $(tab_1_status3).jqxComboBox({ disabled: true });
+
+        $(tab_1_fromDate3).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate3 input').css('font-size', '11px');
+        $(tab_1_fromDate3).jqxDateTimeInput('setDate', settingDayDate(-30));
+
+        $(tab_1_toDate3).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate3 input').css('font-size', '11px');
+
+
+        //모바일 마감 및 거래 마감
+        $(tab_1_status4).jqxComboBox(pg_gubn_with_daysum_setting);
+
+        $(tab_1_fromDate4).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate4 input').css('font-size', '11px');
+        $(tab_1_fromDate4).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_1_toDate4).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate4 input').css('font-size', '11px');
+
+        $("#tab_1_check_sum4").jqxCheckBox({ width: 120, height: 25 });
+
+
+        $(tab_1_fromDate4_sub).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate4_sub input').css('font-size', '11px');
+
+        $(tab_1_toDate4_sub).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate4_sub input').css('font-size', '11px');
+        $("#btnReClose4").jqxButton({ width: '100', height: '25' });
+
+
+        $(tab_1_close_code5).jqxComboBox(close_code_setting);
+
+        $(tab_1_close_code5).on('change', function (event) {
+            var args = event.args;
+            if (args) {
+                // index represents the item's index.                          
+                var index = args.index;
+                var item = args.item.value;
+                if (item == 14 || item ==12) {
+                    $("#tab_1_dateTitle5").html("처리일 :");
+
+                } else {
+                    $("#tab_1_dateTitle5").html("승인일 :");
+                }
+            }
+        });
+
+        $(tab_1_fromDate5).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_fromDate5 input').css('font-size', '11px');
+        $(tab_1_fromDate5).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_1_toDate5).jqxDateTimeInput(carlendar_setting);
+        $('#tab_1_toDate5 input').css('font-size', '11px');
+        $(tab_1_pgGubn5).jqxComboBox(pg_gubn_setting);
+        $(tab_1_processCode5).jqxComboBox(processCode);
+
+        $(tab_1_searchCode5).jqxComboBox(searchCode);
+        $("#tab_1_searchValue5").jqxInput({ width: '150px', height: '20px', maxLength: 300 });
+
+        loadTabGrid1('init');
+
+        loadTabGrid2('init');
+        loadTabGrid3('init');
+        loadTabGrid4_1('init');
+        loadTabGrid4_2('init');
+        loadTabGrid5_1('init');
+        loadTabGrid5_2('init');
+
+        setTimeout(function () {
+            $(grid1.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid2.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid3.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid4_1.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid4_2.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid5_1.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid5_2.grid_id).jqxGrid('localizestrings', localizationobj);
+        }, 1000);
+
+  //      setTimeout(function () { loadTabGrid3('search'); }, 10);
+
+    }
+
+}
+$("#btnReClose").on('click', function () {
+    alert("2차 개발에서 적용됩니다. 기대해주세요");
+});
+
+$("#btnReClose4").on('click', function () {
+    alert("2차 개발에서 적용됩니다. 기대해주세요");
+});
+
+function DoInquery(id) {
+    switch(id){
+        case 'tab_1_bt_Inquery1':
+            loadTabGrid1('search');            
+            break;
+        case 'tab_1_bt_Inquery2':
+            loadTabGrid2('search');
+            break;
+        case 'tab_1_bt_Inquery3':
+            loadTabGrid3('search');
+            break;
+        case 'tab_1_bt_Inquery3':
+            loadTabGrid3('search');
+            break;
+        case 'tab_1_bt_Inquery4_1':
+            loadTabGrid4_1('search');
+            setTimeout(function () {
+                loadTabGrid4_2('search');
+            }, 0);
+            break;
+        case 'tab_1_bt_Inquery5':
+            loadTabGrid5_1('search');
+            break;
+        case 'tab_1_bt_Inquery_Sum5':
+            loadTabGrid5_2('search');
+            break;
+    }
+}
+
+function DoExcel(id) {
+    switch (id) {
+        case 'tab_1_bt_Excel1':
+            var str = '/MobileMng/MobileCloseExcel/SelectMobileReconDailyExcelPost';
+            $("#tab_1_pgGubn1_h").val($("#tab_1_pgGubn1").val());
+            $("#tab_1_fromDate1_h").val($("#tab_1_fromDate1").val());
+            $("#tab_1_toDate1_h").val($("#tab_1_toDate1").val());
+            $('#searchFromTabGrid1').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_1_bt_Excel2':
+            var str = '/MobileMng/MobileCloseExcel/SelectMobileReconDailyDetailExcelPost';
+            $("#tab_1_same_code2_h").val($("#tab_1_same_code2").val());
+            $("#tab_1_pgGubn2_h").val($("#tab_1_pgGubn2").val());
+            $("#tab_1_fromDate2_h").val($("#tab_1_fromDate2").val());
+            $("#tab_1_toDate2_h").val($("#tab_1_toDate2").val());
+            $('#searchFromTabGrid2').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_1_bt_Excel3':
+            var str = '/MobileMng/MobileCloseExcel/SelectMobileCommentListExcelPost';
+            $("#tab_1_pgGubn3_h").val($("#tab_1_pgGubn3").val());
+            $("#tab_1_fromDate3_h").val($("#tab_1_fromDate3").val());
+            $("#tab_1_toDate3_h").val($("#tab_1_toDate3").val());
+            $('#searchFromTabGrid3').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+
+        case 'tab_1_bt_Excel4_1':
+            var str = '/MobileMng/MobileCloseExcel/SelectCLOSE_DAILY_LISTExcelPost';
+            $("#tab_1_pgGubn4_h").val($("#tab_1_status4").val());
+            $("#tab_1_fromDate4_h").val($("#tab_1_fromDate4").val());
+            $("#tab_1_toDate4_h").val($("#tab_1_toDate4").val());
+            $("#tab_1_check_sum4_h").val($("#tab_1_check_sum4").val());
+            $('#searchFromTabGrid4_1').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_1_bt_Excel4_2':
+            var str = '/MobileMng/MobileCloseExcel/SelectCLOSE_DAILY_SUMExcelPost';
+            $("#tab_1_pgGubn4_h").val($("#tab_1_status4").val());
+            $("#tab_1_fromDate4_h").val($("#tab_1_fromDate4").val());
+            $("#tab_1_toDate4_h").val($("#tab_1_toDate4").val());
+            $("#tab_1_check_sum4_h").val($("#tab_1_check_sum4").val());
+            $('#searchFromTabGrid4_1').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_1_bt_Excel5_1':
+            var str = '/MobileMng/MobileCloseExcel/SelectCLOSE_DETAIL_LIST_Excel';
+            $("#tab_1_close_code5_h").val($("#tab_1_close_code5").val());
+            $("#tab_1_fromDate5_h").val($("#tab_1_fromDate5").val());
+            $("#tab_1_toDate5_h").val($("#tab_1_toDate5").val());
+            $("#tab_1_pgGubn5_h").val($("#tab_1_pgGubn5").val());
+            $("#tab_1_processCode5_h").val($("#tab_1_processCode5").val());
+            $("#tab_1_searchCode5_h").val($("#tab_1_searchCode5").val());
+            $("#tab_1_searchValue5_h").val($("#tab_1_searchValue5").val());
+            $('#searchFromTabGrid5').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_1_bt_Excel5_2':
+            var str = '/MobileMng/MobileCloseExcel/SelectCLOSE_DETAIL_SUM_Excel';
+            $("#tab_1_close_code5_h").val($("#tab_1_close_code5").val());
+            $("#tab_1_fromDate5_h").val($("#tab_1_fromDate5").val());
+            $("#tab_1_toDate5_h").val($("#tab_1_toDate5").val());
+            $("#tab_1_pgGubn5_h").val($("#tab_1_pgGubn5").val());
+            $("#tab_1_processCode5_h").val($("#tab_1_processCode5").val());
+            $("#tab_1_searchCode5_h").val($("#tab_1_searchCode5").val());
+            $("#tab_1_searchValue5_h").val($("#tab_1_searchValue5").val());
+            $('#searchFromTabGrid5').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+    }
+
+}
+
+
+function DoPrint(id) {    
+    switch(id){    
+        case 'tab_1_bt_Print1':
+            $(grid1.grid_id).jqxGrid("width", 2200);
+            $(grid1.grid_id).jqxGrid("height", 400);
+            $(grid1.grid_id).jqxGrid('render');
+            
+
+            $("#tab_1_fromDate1").css("display", "none");
+            $("#tab_1_toDate1").css("display", "none");
+            $("#tab_1_fromDate1_div").css("display", "block");
+            $("#tab_1_toDate1_div").css("display", "block");
+
+            $("#tab_1_fromDate1_div").html($("#tab_1_fromDate1").val());
+            $("#tab_1_toDate1_div").html($("#tab_1_toDate1").val());
+            var file_name = "dvmumbai_SelectMobileReconDailyPost_" + settingDayDate_string(0) + ".png";
+            setTimeout(function () { fn_htmlView(2200, 500, $("#tab1_jqxexpander_1").html(), grid1.grid_id, "tab1_jqxexpander_1", file_name); }, 300);
+            break;
+        case 'tab_1_bt_Print4':
+            $(grid4_1.grid_id).jqxGrid("width", 3900);
+            $(grid4_1.grid_id).jqxGrid("height", 400);
+            $(grid4_1.grid_id).jqxGrid('render');
+
+            $("#tab_1_fromDate4").css("display", "none");
+            $("#tab_1_toDate4").css("display", "none");
+            $("#tab_1_fromDate4_div").css("display", "block");
+            $("#tab_1_toDate4_div").css("display", "block");
+
+            $("#tab_1_fromDate4_div").html($("#tab_1_fromDate4").val());
+            $("#tab_1_toDate4_div").html($("#tab_1_toDate4").val());
+            var file_name = "dvmumbai_SelectCLOSE_DAILY_LIST_" + settingDayDate_string(0) + ".png";
+            setTimeout(function () { fn_htmlView(3300, 500, $("#tab1_jqxexpander_4").html(), grid4_1.grid_id, "tab1_jqxexpander_4", file_name); }, 300);
+            break;
+    }
+}
+
+
+// 행추가
+function DoLineAdd(id) {
+    switch (id) {
+        case 'tab_1_bt_LineAdd3':
+            var generaterow = function(){
+                var row = {};
+                var d = new Date();
+                row["NUMDT"] = "I"
+                row["MEMO_DATE"] = getDateString(new Date());
+                row["MEMO_CONTENT"] = "";
+                row["OPRT_USER"] = _LoginId;
+                row["MEMO_SEQNO"] = ""
+                return row;
+            };
+            $(grid3.grid_id).jqxGrid("addrow", null, generaterow(), "first");
+            $(grid3.grid_id).jqxGrid('selectrow', 0);
+            $(grid3.grid_id).jqxGrid('ensurerowvisible', 0);
+
+            break;
+    }
+}
+
+
+//삭제
+function DoDel(id) {
+    switch (id) {
+        case 'tab_1_bt_Del3':
+            //_LoginId
+            var deleteJson = new Array();
+            var object;
+            var getselectedrowindexes = $(grid3.grid_id).jqxGrid('getselectedrowindexes');
+            if (getselectedrowindexes < 0 || getselectedrowindexes =="") {
+                alert("삭제할 행을 선택하세요.");
+                return;
+            }
+
+            //var s_OPRT_USER = $(grid3.grid_id).jqxGrid("getcelltext", getselectedrowindexes, "OPRT_USER");
+            //if (s_OPRT_USER != _LoginId) {
+            //    alert("본인이 등록한 내역만 삭제할 수 있습니다.");
+            //    return;
+            //}
+            if (!confirm("선택한 행을 삭제하시겠습니까?")) {
+                return;
+            }
+            object = $(grid3.grid_id).jqxGrid('getRowData', getselectedrowindexes);
+            deleteJson[0] = object;
+            var deleteJson = JSON.stringify(deleteJson);
+            var getReportColumnsParams = {
+                "insertJson": ""
+               , "updateJson": ""
+               , "deleteJson": deleteJson
+            };
+            $.ajax({
+                url: "/MobileMng/MobileClose/CrudComment",
+                dataType: 'json',
+                type: 'POST',
+                data: getReportColumnsParams,
+                beforeSend: function () {
+                    $(grid3.grid_id).jqxGrid('clear');
+                    $(grid3.grid_id).jqxGrid('showloadelement');
+                },
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                },
+                success: function (data) {
+                    // initailize grid
+                    $(grid3.grid_id).jqxGrid('hideloadelement');
+                    loadTabGrid3('search');
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+            break;
+    }
+}
+
+
+// 저장
+function DoSave(id) {
+    switch (id) {
+        case 'tab_1_bt_Save3':
+            var inserJson = new Array();
+            var updateJson = new Array();
+            var i_insert = 0 ;
+            var i_update = 0 ;
+            var rows = $(grid3.grid_id).jqxGrid('getrows');
+            var object;
+            for (var i = 0 ; i < rows.length ; i++) {
+                if (rows[i].NUMDT == "I") {
+                    object = $(grid3.grid_id).jqxGrid('getRowData', i);
+                    inserJson[i_insert] = object;
+                    i_insert = i_insert + 1;
+                } else if (rows[i].NUMDT == "U") {
+                    object = $(grid3.grid_id).jqxGrid('getRowData', i);
+                    updateJson[i_update] = object;
+                    i_update = i_update + 1;
+                }
+            }
+            
+            for (var i = 0 ; i < rows.length-1 ; i++) {
+                if (rows[i].MEMO_DATE == rows[i + 1].MEMO_DATE) {
+                    alert("같은 날짜에 한개만 등록 가능합니다.");
+                    return;
+                }
+            }
+            var insertJson = JSON.stringify(inserJson);
+            var updateJson = JSON.stringify(updateJson);
+            var getReportColumnsParams = {
+                "insertJson": insertJson
+               , "updateJson": updateJson
+               , "deleteJson": ""
+            };
+
+            $.ajax({
+                url: "/MobileMng/MobileClose/CrudComment",
+                dataType: 'json',
+                type: 'POST',
+                data: getReportColumnsParams,
+                beforeSend: function () {
+                    $(grid3.grid_id).jqxGrid('clear');
+                    $(grid3.grid_id).jqxGrid('showloadelement');
+                },
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                },
+                success: function (data) {
+                    // initailize grid
+                    $(grid3.grid_id).jqxGrid('hideloadelement');
+                    loadTabGrid3('search');
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+            break;
+    }
+}
+
+function getDateString(s_date) {
+    var yyyy = s_date.getFullYear().toString();
+    var mm = (s_date.getMonth() + 1).toString();
+    var dd = s_date.getDate().toString();
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+    var datestring = yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+    return datestring;
+}
+
+function fn_htmlView(s_width, s_height, soureHtml, grid_id,move_foucs_id,file_name) {
+    $("#printtag").width(s_width);
+    $("#printtag").height(s_height);
+    $("#printtag").html("");
+    $("#printtag").html(soureHtml);
+    
+    html2canvas($("#printtag"), {
+        onrendered: function (canvas) {
+            $("#previewImage").append(canvas);
+            var image = canvas.toDataURL();
+            downloadImage(image, file_name);
+            $("#printtag").html("");
+            $("#printtag").width(0);
+            $("#printtag").height(0);
+            fnMove(move_foucs_id);
+        }
+    });
+    $(grid_id).jqxGrid('width', tab_1.grid_width);
+    $(grid_id).jqxGrid('height', tab_1.grid_height);
+    $(grid_id).jqxGrid('render');
+    if (grid_id == grid1.grid_id) {
+        $("#tab_1_fromDate1_div").css("display", "none");
+        $("#tab_1_toDate1_div").css("display", "none");
+        $("#tab_1_fromDate1").css("display", "block");
+        $("#tab_1_toDate1").css("display", "block");
+
+    } else if (grid_id == grid4_1.grid_id) {
+        $("#tab_1_fromDate4_div").css("display", "none");
+        $("#tab_1_toDate4_div").css("display", "none");
+        $("#tab_1_fromDate4").css("display", "block");
+        $("#tab_1_toDate4").css("display", "block");
+
+    }
+}
+
+function downloadImage(img, fileName) {
+
+    var imgData = atob(img.split(',')[1]),
+        len = imgData.length,
+        buf = new ArrayBuffer(len),
+        view = new Uint8Array(buf),
+        blob, i;
+    for (i = 0; i < len; i++) {
+        view[i] = imgData.charCodeAt(i) & 0xff;
+    }
+
+    blob = new Blob([view], { type: 'application/octet-stream' });
+    if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+    } else {
+        //var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.style = "display: none";
+        //a.href = url;
+        a.href = img;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+            document.body.removeChild(a);
+            //URL.revokeObjectURL(url);
+        }, 100);
+    }
+}

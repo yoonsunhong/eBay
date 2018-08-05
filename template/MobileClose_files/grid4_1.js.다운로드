@@ -1,0 +1,370 @@
+﻿var grid4_1 = {
+    grid_id: "#tab1_4_jqxGrid_1"
+   , grid_init: function (dataAdapter) {
+       $(grid4_1.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: tab_1.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: '승인일', datafield: 'CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               { text: 'PG_TYPE', datafield: 'PAY_TYPE', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer4_1, hidden: true },
+               { text: 'PG', datafield: 'PAY_TYPE_NAME', width: 80, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer4_1, },
+               { text: 'STATUS_CODE', datafield: 'STATUS_CODE', width: 40, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer4_1, hidden: true },
+               { text: '구분', datafield: 'STATUS_NAME', width: 40, align: 'center', cellsalign: 'center', cellsrenderer: cellsrenderer4_1 },
+               {
+                   text: '차이', datafield: 'CLOSE_CODE_42_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+
+               {
+                   text: '건수', datafield: 'CLOSE_CNT', width: 100, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '승인액', datafield: 'CLOSE_AMNT', width: 130, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '입금예정액', datafield: 'CLOSE_RECP_SCHEDULED_AMNT', width: 130, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '수수료', datafield: 'CLOSE_FEE_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '공급가액', datafield: 'CLOSE_FEE_SUPPLY_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '부가세', datafield: 'CLOSE_FEE_VAT_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+
+               {
+                   text: '건수', datafield: 'CLOSE_CODE_11_CNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'div1', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '금액', datafield: 'CLOSE_CODE_11_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'div1', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '건수', datafield: 'CLOSE_CODE_12_CNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'div2', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '금액', datafield: 'CLOSE_CODE_12_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'div2', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '건수', datafield: 'CLOSE_CODE_13_CNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'div3', cellsformat: 'n', cellsrenderer: cellsrenderer4_1, hidden:true
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '금액', datafield: 'CLOSE_CODE_13_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'div3', cellsformat: 'n', cellsrenderer: cellsrenderer4_1, hidden: true
+
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+
+               {
+                   text: '건수', datafield: 'CLOSE_CODE_14_CNT', width: 100, align: 'center', cellsalign: 'right', columngroup: 'div4', cellsformat: 'n', cellsrenderer: cellsrenderer4_1, hidden: true
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '금액', datafield: 'CLOSE_CODE_14_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'div4', cellsformat: 'n', cellsrenderer: cellsrenderer4_1, hidden: true
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '승인합계', datafield: 'CLOSE_CODE_SUM', width: 150, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '경매대금', datafield: 'CLOSE_CODE_19_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '배송비', datafield: 'CLOSE_CODE_5_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '환불금차감', datafield: 'CLOSE_CODE_7_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '취소위약금', datafield: 'CLOSE_CODE_17_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '계좌환불<BR>(비회원)', datafield: 'CLOSE_CODE_20_AMNT', width: 110, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1, hidden: true
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '입금환불', datafield: 'CLOSE_CODE_21_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div5', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불', datafield: 'CLOSE_CODE_22_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div5', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불당일미확인', datafield: 'CLOSE_CODE_23_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div5', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불당일이전미확인', datafield: 'CLOSE_CODE_24_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div5', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '입금환불', datafield: 'CLOSE_CODE_31_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div6', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불', datafield: 'CLOSE_CODE_32_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div6', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불당일미확인', datafield: 'CLOSE_CODE_33_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div6', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '주문환불당일이전미확인', datafield: 'CLOSE_CODE_34_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', columngroup: 'div6', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '마감차이', datafield: 'CLOSE_CODE_40_AMNT', width: 80, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+               {
+                   text: '거래합계', datafield: 'CLOSE_CODE_41_AMNT', width: 120, align: 'center', cellsalign: 'right', cellsformat: 'n', cellsrenderer: cellsrenderer4_1
+                   , aggregates: aggregates4_1
+                   , aggregatesrenderer: aggregatesrenderer4_1
+               },
+           ],
+           columngroups: [
+               { text: '당월미확인', align: 'center', name: 'div1' },
+               { text: '이전미확인', align: 'center', name: 'div2' },
+               { text: '당일상계', align: 'center', name: 'div3' ,hidden:true },
+               { text: '이전상계', align: 'center', name: 'div4', hidden:true },
+               { text: '비회원계좌환불', align: 'center', name: 'div5'},
+               { text: 'SmileCash환불', align: 'center', name: 'div6' }
+           ],
+       });
+   }
+}
+
+$(grid4_1.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid4_1.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid4_1.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid4_1.grid_id).jqxGrid('render'); }, 10);
+});
+
+var cellsrenderer4_1 = function (index, datafield, value, defaultHtml, column, rowdata) {
+    var element = $(defaultHtml);
+
+
+    if (rowdata['STATUS_CODE'] == 9997) {
+        if (datafield == "CLOSE_CODE_SUM") {
+            element.css({ 'background-color': 'azure', 'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+            return element[0].outerHTML;
+        } else if (datafield == "CLOSE_CODE_41_AMNT") {
+            element.css({ 'background-color': 'azure', 'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+            return element[0].outerHTML;
+        } else {
+            element.css({ 'background-color': 'azure', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        }
+        return element[0].outerHTML;
+    }
+
+    /*
+    if (rowdata['PAY_TYPE'] == '9998') {
+        if (datafield == "CLOSE_CODE_SUM") {
+            element.css({ 'background-color': '#e0e9f5', 'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+            return element[0].outerHTML;
+        } else if (datafield == "CLOSE_CODE_41_AMNT") {
+            element.css({ 'background-color': '#e0e9f5', 'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+            return element[0].outerHTML;
+        } else {
+            element.css({ 'background-color': '#e0e9f5', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        }
+        return element[0].outerHTML;
+    }
+    */
+    if (datafield == "CLOSE_CODE_SUM") {
+        element.css({ 'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        return element[0].outerHTML;
+    } else if (datafield == "CLOSE_CODE_41_AMNT") {
+        element.css({'font-weight': 'bold', 'width': '100%', 'height': '100%', 'padding': '5px 2px 0 0', 'margin': '0' });
+        return element[0].outerHTML;
+    }
+
+    return defaultHtml;
+}
+
+
+var aggregates4_1 =  
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "CLOSE_DATE") {
+                return "전체합계";
+            } else {
+                if ($("#tab_1_status4").val() == '9998'){
+                    if (record['PAY_TYPE'] == '9998') {
+                        aggregatedValue = aggregatedValue + currentValue;
+                    }
+                } else {
+                    if (record['STATUS_CODE'] == '9997') {
+                        aggregatedValue = aggregatedValue + currentValue;
+                    }
+
+                }
+                return aggregatedValue;
+            }
+        }
+    }];
+
+
+var aggregatesrenderer4_1 =  function (aggregates) {
+    var renderstring = "";
+
+    $.each(aggregates, function (key, value) {
+        renderstring += '<div style="position: relative; padding-top: 4px; overflow: hidden;">' + value + '</div>';
+    });
+    return renderstring;
+}
+
+var loadTabGrid4_1 = function (gubn) {
+    var pgGubn = "";
+    var fromDate = "";
+    var toDate = "";
+    var check_sum = "";
+    var to_url = "";
+    if (gubn == 'search') {
+        pgGubn = $("#tab_1_status4").val();
+        fromDate = $("#tab_1_fromDate4").val();
+        toDate = $("#tab_1_toDate4").val();
+        check_sum = $("#tab_1_check_sum4").val();
+    }
+    var postData = { pgGubn: pgGubn, fromDate: fromDate, toDate: toDate, check_sum: check_sum };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectCLOSE_DAILY_LIST",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid4_1.grid_id).jqxGrid('clear');
+            $(grid4_1.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'CLOSE_DATE',    type: 'string' },
+                    { name: 'PAY_TYPE',      type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+                    { name: 'STATUS_CODE', type: 'string' },
+                    { name: 'STATUS_NAME', type: 'string' },
+
+                    { name: 'CLOSE_CNT', type: 'number' },
+                    { name: 'CLOSE_AMNT', type: 'number' },
+                    { name: 'CLOSE_RECP_SCHEDULED_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_SUPPLY_AMNT', type: 'number' },
+                    { name: 'CLOSE_FEE_VAT_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_11_CNT', type: 'number' },
+                    { name: 'CLOSE_CODE_11_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_12_CNT', type: 'number' },
+                    { name: 'CLOSE_CODE_12_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_13_CNT', type: 'number' },
+                    { name: 'CLOSE_CODE_13_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_14_CNT', type: 'number' },
+                    { name: 'CLOSE_CODE_14_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_SUM', type: 'number' },
+                    { name: 'CLOSE_CODE_19_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_5_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_7_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_17_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_20_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_21_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_22_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_23_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_24_AMNT', type: 'number' },
+
+                    { name: 'CLOSE_CODE_31_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_32_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_33_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_34_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_40_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_41_AMNT', type: 'number' },
+                    { name: 'CLOSE_CODE_42_AMNT', type: 'number' },
+               ]
+                , id: "tab1_grid4_1"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid4_1.grid_id).jqxGrid('source', dataAdapter);
+                $(grid4_1.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid4_1.grid_init(dataAdapter);
+            }
+        }
+    });
+}

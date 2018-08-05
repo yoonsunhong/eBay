@@ -1,0 +1,144 @@
+﻿var grid3 = {
+    grid_id: "#jqxEtc"
+   ,grid_init: function (dataAdapter) {
+       $(grid3.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: 200,
+           source: dataAdapter,
+           sortable: true,
+           filterable: false,           
+           altrows: true,
+           editable: true,
+           showstatusbar: false,
+           showaggregates: false,
+           columnsresize: true,
+           columnsreorder: true,
+           pageable: true,
+           theme: 'energyblue',
+           columns: [
+              { text: '', datafield: 'NUMDT', width: 50, align: 'center', cellsalign: 'center', editable: false }
+              ,{
+                  text: '승인일', datafield: 'MEMO_DATE', columntype: 'datetimeinput'
+                  , cellsformat: 'yyyy-MM-dd'
+                  , width: 140, align: 'center', cellsalign: 'center', editable: true
+                  , cellvaluechanging: function (row, column, columntype, oldvalue, newvalue) {
+                      if (newvalue == "") {
+                           return oldvalue;
+                       } else {
+                          return getDateString(newvalue);
+                      }
+                   }
+               },
+               {
+                   text: '비고', datafield: 'MEMO_CONTENT', width: 835, align: 'center', cellsalign: 'left'
+                  , cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+                      if (newvalue == "") {
+                          return oldvalue;
+                      } else {
+                          if($(grid3.grid_id).jqxGrid('getcellvalue', row, "NUMDT") == null){
+                              $(grid3.grid_id).jqxGrid('setcellvalue', row, "NUMDT", "U");
+                          }
+                      }
+                  }
+                 , initeditor: function (row, column, editor) {
+                     editor.attr('maxlength', 500);
+                  }
+               },
+               { text: '작성자', datafield: 'OPRT_USER', width: 70, align: 'center', cellsalign: 'center', editable: false },
+               { text: '작성일', datafield: 'UPD_DATE', width: 70, align: 'center', cellsalign: 'center', editable: false },
+           ],
+       });
+   }
+}
+$(grid3.grid_id).on('cellclick', function (event) {
+    var rowIndex = event.args.rowindex;
+    var s_numdt = $(grid3.grid_id).jqxGrid("getcelltext", rowIndex, "NUMDT");
+    var s_OPRT_USER = $(grid3.grid_id).jqxGrid("getcelltext", rowIndex, "OPRT_USER");
+
+    var current_datafield = event.args.datafield;
+    if (s_numdt == "I") {
+        if (current_datafield == "MEMO_DATE") {
+            $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', true);
+        } 
+        if (current_datafield == "MEMO_CONTENT") {
+            $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', true);
+        }
+    } else {
+        if (current_datafield == "MEMO_DATE") {
+            $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', false);
+        }
+        if (current_datafield == "MEMO_CONTENT") {
+            //if (s_OPRT_USER != _LoginId) {
+            //    $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', false);
+            //} else {
+            //    $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', true);
+            //}
+            $(grid3.grid_id).jqxGrid('setcolumnproperty', current_datafield, 'editable', true);
+        }
+    }
+});
+var loadTabGrid3 = function (gubn) {
+    var s_status = "";
+    var fromDate = "";
+    var toDate = "";
+    var to_url = "";
+    if (gubn == 'search') {
+        status = $("#tab_1_status3").val();
+        pay_method = 1;
+        fromDate = $("#tab_1_fromDate3").val();
+        toDate = $("#tab_1_toDate3").val();
+    }
+    var postData = { status: status, fromDate: fromDate, toDate: toDate };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectMobileCommentDetail",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid3.grid_id).jqxGrid('clear');
+            $(grid3.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+                , datatype: 'json'
+                , datafields: [
+                    { name: 'NUMDT', type: 'string' },
+                    { name: 'MEMO_SEQNO', type: 'number' },
+                    { name: 'MEMO_DATE', type: 'string' },
+                    { name: 'STATUS', type: 'string' },
+                    { name: 'PAY_METHOD', type: 'string' },
+                    { name: 'MEMO_CONTENT', type: 'string' },
+                    { name: 'OPRT_USER', type: 'string' },
+                    { name: 'UPD_DATE', type: 'string' },
+                ]
+                , id: "tab1_grid3"
+                , addrow: function (rowid, rowdata, position, commit) {
+                    commit(true);
+                }
+                , deleterow: function (rowid, rowdata, position, commit) {
+                    alert(rowid + ":" + rowdata + ":" + position + ":" + commit);
+                }
+            };
+
+
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid3.grid_id).jqxGrid('source', dataAdapter);
+                $(grid3.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid3.grid_init(dataAdapter);
+            }
+        },
+        error: function (request, status, error) {
+        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    }
+});
+}

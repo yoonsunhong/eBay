@@ -1,0 +1,130 @@
+﻿var grid2_1 = {
+    grid_id: "#jqxGrid2_1"
+   , grid_init: function (dataAdapter) {
+       $(grid2_1.grid_id).jqxGrid({
+           width: tab_2.grid_width,
+           height: tab_2.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: true,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: '환불완료일', datafield: 'REFUND_CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center'
+                   , aggregates: aggregates2_1
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: 'SmileCash처리일', datafield: 'SMILECASH_APPR_DATE', width: 100, align: 'center', cellsalign: 'center'
+               },
+               { text: 'SmileCash승인번호', datafield: 'SMILECASH_TXID', width: 100, align: 'center', cellsalign: 'center' },
+               {
+                   text: '승인액', datafield: 'CLOSE_AMNT', width: 150, align: 'center', cellsalign: 'right', cellsformat: 'n'
+                   , aggregates: aggregates2_1
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: '실환불금', datafield: 'REFUND_AMNT', width: 150, align: 'center', cellsalign: 'right', cellsformat: 'n'
+                   , aggregates: aggregates2_1
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               { text: '결제번호', datafield: 'PAY_NO', width: 180, align: 'center', cellsalign: 'center' },
+               { text: '주문번호', datafield: 'ORDER_NO', width: 180, align: 'center', cellsalign: 'center' },
+               { text: '배송비번호', datafield: 'SHIPPING_SEQNO', width: 180, align: 'center', cellsalign: 'center' },
+               { text: '고객ID', datafield: 'BUYER_ID', width: 100, align: 'center', cellsalign: 'center' },
+               { text: '고객처리구분', datafield: 'CLOSE_NAME', width: 100, align: 'center', cellsalign: 'center' }
+           ],
+       });
+   }
+}
+
+$(grid2_1.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2_1.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid2_1.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2_1.grid_id).jqxGrid('render'); }, 10);
+});
+
+var aggregates2_1 =  
+    [{
+        'sum': function (aggregatedValue, currentValue, column, record) {
+            if (column == "REFUND_CLOSE_DATE") {
+                return "전체합계";
+            } else {
+                aggregatedValue = aggregatedValue + currentValue;
+                return aggregatedValue;
+            }
+        }
+    }];
+
+var loadTabGrid2_1 = function (gubn) {
+    var close_code = "";
+    var fromDate = "";
+    var toDate = "";
+    var pgGubn = "";
+    var processCode = "";
+    var searchCode = "";
+    var searchValue = "";
+    if (gubn == 'search') {
+        close_code = $("#tab_2_close_code1").val();
+        fromDate = $("#tab_2_fromDate1").val();
+        toDate = $("#tab_2_toDate1").val();
+        pgGubn = $("#tab_2_pgGubn1").val();
+        processCode = $("#tab_2_processCode1").val();
+        searchCode = $("#tab_2_searchCode1").val();
+        searchValue = $("#tab_2_searchValue1").val();
+    }
+   
+    var postData = { close_code: close_code, fromDate: fromDate, toDate: toDate, pgGubn: pgGubn, processCode: processCode, searchCode: searchCode, searchValue: searchValue };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectSmailCash1",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid2_1.grid_id).jqxGrid('clear');
+            $(grid2_1.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'REFUND_CLOSE_DATE', type: 'string' },
+                    { name: 'SMILECASH_APPR_DATE', type: 'string' },
+                    { name: 'SMILECASH_TXID', type: 'string' },
+                    { name: 'CLOSE_AMNT', type: 'number' },
+                    { name: 'REFUND_AMNT', type: 'number' },
+                    { name: 'PAY_NO', type: 'string' },
+                    { name: 'ORDER_NO', type: 'string' },
+                    { name: 'SHIPPING_SEQNO', type: 'string' },
+                    { name: 'BUYER_ID', type: 'string' },
+                    { name: 'CLOSE_CODE', type: 'string' },
+                    { name: 'CLOSE_NAME', type: 'string' }
+
+                  ]
+                , id: "tab1_grid2_1"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid2_1.grid_id).jqxGrid('source', dataAdapter);
+                $(grid2_1.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid2_1.grid_init(dataAdapter);
+            }
+        }
+    });
+}

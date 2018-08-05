@@ -1,0 +1,530 @@
+/*body {
+	background-color: #f8f8f8;
+    padding-top: 20px;
+  padding-bottom: 20px;
+}*/
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+body,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  min-width: 1000px;
+}
+
+/* Don't let the lead text change font-size. */
+.lead {
+  font-size: 12px;
+}
+
+/* Finesse the page header spacing */
+.page-header {
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+.page-header .lead {
+  margin-bottom: 10px;
+}
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+#body {
+    background-color: #efeeef;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+    .main-content {
+        background: url("Images/accent.png") no-repeat;
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+    .featured + .main-content {
+        background: url("Images/heroAccent.png") no-repeat;
+    }
+
+header .content-wrapper {
+    padding-top: 20px; 
+}
+
+footer {
+    clear: both;
+    font-size: .8em;
+    height: 100px;
+}
+
+
+/* Non-responsive overrides
+ *
+ * Utilize the following CSS to disable the responsive-ness of the container,
+ * grid system, and navbar.
+ */
+
+/* Reset the container */
+.container {
+  width: 1200px;
+  max-width: none !important;
+}
+
+/* Demonstrate the grids */
+.col-xs-4 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);
+}
+
+.container .navbar-header,
+.container .navbar-collapse {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Always float the navbar header */
+.navbar-header {
+  float: left;
+}
+
+/* Undo the collapsing navbar */
+.navbar-collapse {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+
+.navbar-toggle {
+  display: none;
+}
+.navbar-collapse {
+  border-top: 0;
+}
+
+.navbar-brand {
+  margin-left: -15px;
+}
+
+/* Always apply the floated nav */
+.navbar-nav {
+  float: left;
+  margin: 0;
+}
+.navbar-nav > li {
+  float: left;
+}
+.navbar-nav > li > a {
+  padding: 15px;
+}
+
+/* Redeclare since we override the float above */
+.navbar-nav.navbar-right {
+  float: right;
+}
+
+/* Undo custom dropdowns */
+.navbar .navbar-nav .open .dropdown-menu {
+  position: absolute;
+  float: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-width: 0 1px 1px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #333;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar .navbar-nav .open .dropdown-menu > .active > a,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #fff !important;
+  background-color: #428bca !important;
+}
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  color: #999 !important;
+  background-color: transparent !important;
+}
+
+/* Undo form expansion */
+.navbar-form {
+  float: left;
+  width: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/* Copy-pasted from forms.less since we mixin the .form-inline styles. */
+.navbar-form .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.navbar-form .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar-form .form-control-static {
+  display: inline-block;
+}
+
+.navbar-form .input-group {
+  display: inline-table;
+  vertical-align: middle;
+}
+
+.navbar-form .input-group .input-group-addon,
+.navbar-form .input-group .input-group-btn,
+.navbar-form .input-group .form-control {
+  width: auto;
+}
+
+.navbar-form .input-group > .form-control {
+  width: 100%;
+}
+
+.navbar-form .control-label {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.navbar-form .radio,
+.navbar-form .checkbox {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.navbar-form .radio label,
+.navbar-form .checkbox label {
+  padding-left: 0;
+}
+
+.navbar-form .radio input[type="radio"],
+.navbar-form .checkbox input[type="checkbox"] {
+  position: relative;
+  margin-left: 0;
+}
+
+.navbar-form .has-feedback .form-control-feedback {
+  top: 0;
+}
+
+/* Undo inline form compaction on small screens */
+.form-inline .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.form-inline .form-control-static {
+  display: inline-block;
+}
+
+.form-inline .input-group {
+  display: inline-table;
+  vertical-align: middle;
+}
+.form-inline .input-group .input-group-addon,
+.form-inline .input-group .input-group-btn,
+.form-inline .input-group .form-control {
+  width: auto;
+}
+
+.form-inline .input-group > .form-control {
+  width: 100%;
+}
+
+.form-inline .control-label {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.form-inline .radio,
+.form-inline .checkbox {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.form-inline .radio label,
+.form-inline .checkbox label {
+  padding-left: 0;
+}
+
+.form-inline .radio input[type="radio"],
+.form-inline .checkbox input[type="checkbox"] {
+  position: relative;
+  margin-left: 0;
+}
+
+.form-inline .has-feedback .form-control-feedback {
+  top: 0;
+}
+
+input[type="text"].form-control,
+select.form-control
+ {
+	height:30px;
+	font-size:12px;
+}
+
+.table {
+	margin-top:3px;
+}
+.table th {
+	background-color: #ECEDEF;
+	font-size:9pt;
+
+}
+.table th label {
+	margin:0px;
+}
+.table td {
+	font-size:11px;
+	word-break:break-all;
+}
+
+.table td.right {
+	text-align:right;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input[type="text"],
+input[type="password"] {
+    max-width: 280px;
+}*/
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+
+.fixed-table {
+  display: block;
+  position: relative;
+}
+.fixed-table .table-content {
+  display: block;
+  position: relative;
+  height: 300px; /*FIX THE HEIGHT YOU NEED*/
+  overflow: auto;
+}
+.fixed-table .table-copy, .fixed-table .header-copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color:#fff;
+}
+
+.table-content {
+	border:solid 1px rgba(0, 0, 0, .175);
+}
+
+.div_scroll { 
+	overflow-y:scroll; 
+	overflow-x:auto; 
+	border: solid 1px rgba(0, 0, 0, .175); 
+	/*margin:20px 0 10px 0;*/
+	padding:0 ;
+
+	max-height:300px; 
+	width:100%;
+}
+	.div_scroll table.table { min-width:100%; max-width :none;margin:0;padding:0; table-layout:fixed }
+
+	.table_scroll_layout table { max-width:none; }
+	
+	table.table td.w_0 { width:1px; border-right:0px;  }
+	table.table td.w_0_l { width:1px; border-left:0px;  }
+	table.table td.w_10, table.table th.w_10 { width:10px;  }	
+	table.table td.w_20, table.table th.w_20 { width:20px;  }	
+	table.table td.w_30, table.table th.w_40 { width:30px;  }	
+	table.table td.w_40, table.table th.w_40 { width:40px;  }	
+	table.table td.w_50, table.table th.w_50 { width:50px;  }
+	table.table td.w_60, table.table th.w_60 { width:60px;  }
+	table.table td.w_70, table.table th.w_70 { width:70px;  }
+	table.table td.w_80, table.table th.w_80 { width:80px;  }
+	table.table td.w_90, table.table th.w_90 { width:90px;  }
+	table.table td.w_100, table.table th.w_100 { width:100px;  }
+	table.table td.w_110, table.table th.w_110 { width:110px;  }
+	table.table td.w_120, table.table th.w_120 { width:120px;  }
+	table.table td.w_130, table.table th.w_130 { width:130px;  }
+	table.table td.w_140, table.table th.w_140 { width:140px;  }
+	table.table td.w_150, table.table th.w_150 { width:150px;  }
+	table.table td.w_160, table.table th.w_160 { width:160px;  }
+	table.table td.w_170, table.table th.w_170 { width:170px;  }
+	table.table td.w_180, table.table th.w_180 { width:180px;  }
+	table.table td.w_190, table.table th.w_190 { width:190px;  }
+	table.table td.w_200, table.table th.w_200 { width:200px;  }
+	table.table td.w_210, table.table th.w_210 { width:210px;  }
+	table.table td.w_220, table.table th.w_220 { width:220px;  }
+	table.table td.w_230, table.table th.w_230 { width:230px;  }
+	table.table td.w_240, table.table th.w_240 { width:240px;  }
+	table.table td.w_250, table.table th.w_250 { width:250px;  }
+
+	table.table td.left, table.table th.left { text-align:left  }	
+	table.table td.center, table.table th.center { text-align:center  }	
+	table.table td.right, table.table th.right { text-align:right  }	
+
+/*=====================================================================================================================================*/
+
+.table_scroll_layout {
+	width :100%;
+	padding:0px;
+	margin:10px 0 0 0;
+	table-layout:fixed;
+	border-spacing:0px;	
+	border:0px;	
+	overflow:hidden;
+}
+
+.header_fix_main_table {
+	/*border           : solid;
+	border-color     : black black #000000;
+	border-width     : 0px 0px 0px 0px;
+	background-color : #666666;
+	text-align       : center;
+	font-size        : 10pt;*/
+	background-color : #ECEDEF;
+	table-layout     : fixed;
+	margin:0px;
+	width : 100%;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/* grid design customize */
+.ui-jqgrid{border-radius:0;color:#222;border:none}
+.ui-jqgrid .ui-jqgrid-hbox{background:#f5f5f5}
+.ui-jqgrid .ui-jqgrid-hdiv th{background:#f5f5f5;text-align:center}
+.ui-jqgrid th,.ui-jqgrid td{padding:5px 10px}
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div{margin-top:0}
+.table > thead > tr > th,.table > tbody > tr > th,.table > tfoot > tr > th,.table > thead > tr > td,.table > tbody > tr > td,.table > tfoot > tr > td {padding: 5px;}
+.table.table-bordered > tbody > tr > th{vertical-align: middle}
+.table.table-bordered > tbody > tr > th >span{line-height: 35px}
+.table.table-bordered > tbody > tr > td{padding:0;}
+.table.table-bordered > tbody > tr > td.form-inline{padding:5px;}
+.ui-jqgrid-bdiv .ui-jqgrid-btable{margin:0;}
+.ui-jqgrid .table-bordered{margin-top:0;}
+.table.table-borderd >tbody >tr >td{padding:0 !important;}
+.table.table-bordered > tbody > tr > th +td{vertical-align:middle !important;padding:5px;}
+.ui-jqgrid .ui-jqgrid-btable tbody tr.jqgrow td input{display:inline;}
+.ui-jqgrid-hdiv,.ui-jqgrid-bdiv{}
+.ui-jqgrid .ui-jqgrid-htable thead th{padding-right:5px;}
+.ui-jqgrid input[type="radio"], .ui-jqgrid input[type="checkbox"]{margin:0;margin-top:2px;}
+.ui-th-column.ui-th-ltr{vertical-align:middle}
+.table.table-bordered > tbody > tr > td > .btn-sm{margin-top:5px;}
+.table.table-bordered > tbody > tr > td > .btn-sm:first-child{margin-left:5px;}
+.ui-jqgrid{width:100% !important;}

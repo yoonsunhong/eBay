@@ -1,0 +1,33 @@
+@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+*{margin:0px;padding:0px;}
+fieldset, input[type="text"], button[type="button"]{border:0;}
+input[type="text"]:focus, button[type="button"]:focus{outline:none}
+input:-ms-input-placeholder{color:#ced2d6}
+input::-webkit-input-placeholder{color:#ced2d6}
+input::-moz-placeholder{color:#ced2d6}
+input::-moz-placeholder{color:#ced2d6} 
+.blind{font-size:0;line-height:0;width:1px;height:1px;overflow:hidden;text-indent:-9999px;position:absolute;top:0px;left:-9999px}
+
+html, body, #loginArea{height:100%;}
+#loginArea{background-color:#233444;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;overflow-y:hidden}
+
+#loginContent form legend, #loginFooter{text-align:center}
+#loginContent form legend, #loginFooter, input[type="text"], button[type="button"]{font-family: "Nanum Gothic"}
+
+#loginHeader{height:50px;line-height:50px;background-color:#233444}
+#loginHeader .logo{text-align:center}
+
+#loginArea > div{position:absolute;top:50%;left:50%;margin:-173px 0 0 -217px;width:707px;height:534px;background:url("../images/login_bg_opa.png") -10px 43px;}
+#loginArea > div > div{width:434px;height:267px}
+#loginContent{width:434px;height:267px;margin:0px auto;}
+#loginContent form{height:209px;background-color:#fff}
+#loginContent form legend{width:100%;margin:0px auto;padding:25px 0;font-size:16px;font-weight:bold;color:#233444}
+#loginContent form div{width:312px;margin:0px auto;}
+#loginContent input[type="text"]{width:100%;height:52px;padding:17px 43px 17px 15px;color:#ced2d6;background-color:#49637c;background-repeat:no-repeat;background-position:94% 50%;border:1px solid #ced2d6;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+#loginContent input[type="text"].id{margin-bottom:2px;background-image:url("../images/id_ico.png")}
+#loginContent input[type="text"].pw{background-image:url("../images/pw_ico.png")}
+#loginContent .login_btn{width:100%;height:58px;text-align:center;color:#fff;font-size:20px;font-weight:normal;background-color:#267bcb;cursor:pointer}
+
+#loginFooter{padding-top:16px;text-align:center;color:#7e90a1;font-size:11px}

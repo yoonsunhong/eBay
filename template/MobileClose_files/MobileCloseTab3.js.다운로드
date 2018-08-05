@@ -1,0 +1,271 @@
+﻿var tab_3 = {
+     grid_width : (parseInt(window.container_width, 10) - 114)
+    ,grid_height : 350
+    , init: function () {
+        $(tab_3_pay_method1).jqxComboBox(payment_line_setting);
+        $(tab_3_pay_type1).jqxComboBox(pg_gubn_setting);
+
+        $(tab_3_use_is1).jqxComboBox(use_is_setting);
+        $(tab_3_fee_type1).jqxComboBox(fee_type_setting);
+
+        $(tab_3_pay_method2).jqxComboBox(payment_line_setting);
+        $(tab_3_pay_type2).jqxComboBox(pg_gubn_setting);
+        $(tab_3_fromDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_3_fromDate2 input').css('font-size', '11px');
+        $(tab_3_fromDate2).jqxDateTimeInput('setDate', settingDayDate(-1));
+
+        $(tab_3_toDate2).jqxDateTimeInput(carlendar_setting);
+        $('#tab_3_toDate2 input').css('font-size', '11px');
+        /*저장*/
+        $(tab_3_pay_method1_1).jqxComboBox(payment_pay_method_setting_input);
+        $(tab_3_pay_type1_1).jqxComboBox(pay_type_setting_input);
+
+        $(tab_3_use_is1_1).jqxComboBox(use_yn_setting_input);
+
+        $("#tab_3_PAY_AMOUNT_1").jqxNumberInput({ width: '150px', height: '20px', max: 9999999999, digits: 10, decimalDigits: 0 });
+        $("#tab_3_PAY_RATE_1").jqxNumberInput({ width: '150px', height: '20px', max: 999999, digits: 6, decimalDigits: 4 });
+        $("#tab_3_PAY_RATE_1").jqxNumberInput({ readOnly: true });
+        $("#tab_3_PAY_AMOUNT_1").jqxNumberInput({ readOnly: true });
+        $("#tab_3_PAY_RATE_1").jqxNumberInput('setDecimal', null);
+        $("#tab_3_PAY_AMOUNT_1").jqxNumberInput('setDecimal', null);
+        $(tab_3_fee_type1_1).jqxComboBox(fee_type_setting_input);
+
+        $('#tab_3_fee_type1_1').on('change', function (event) {
+            var args = event.args;
+            if (args) {
+                // index represents the item's index.                          
+                var item = args.item;
+                // get item's label and value.
+                var value = item.value;
+                if (value == "101") {
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput({ readOnly: true });
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput('setDecimal', null);
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput({ readOnly: false });
+
+                    if ($("#tab_3_PAY_AMOUNT_1").jqxNumberInput('getDecimal') == null) {
+                        $("#tab_3_PAY_AMOUNT_1").jqxNumberInput('setDecimal', 0);
+                    }
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput('focus');
+                } else if (value == "102") {
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput({ readOnly: true });
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput('setDecimal', null);
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput({ readOnly: false });
+                    if ($("#tab_3_PAY_RATE_1").jqxNumberInput('getDecimal') == null) {
+                        $("#tab_3_PAY_RATE_1").jqxNumberInput('setDecimal', 0);
+                    }
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput('focus');
+                } else {
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput({ readOnly: true });
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput({ readOnly: true });
+                    $("#tab_3_PAY_AMOUNT_1").jqxNumberInput('setDecimal', null);
+                    $("#tab_3_PAY_RATE_1").jqxNumberInput('setDecimal', null);
+                }
+            }
+        });
+        
+
+        $("#tab_3_MEMO_CONTENT_1").jqxInput({ width: '400px', height: '20px', maxLength: 250 });
+
+        loadTabGrid3_1('init');
+        loadTabGrid3_2('init');
+
+        setTimeout(function () {
+            $(grid3_1.grid_id).jqxGrid('localizestrings', localizationobj);
+            $(grid3_2.grid_id).jqxGrid('localizestrings', localizationobj);
+        }, 1000);
+    }
+
+}
+
+function DoInquery3(id) {
+    switch(id){
+        case 'tab_3_bt_Inquery1':
+            loadTabGrid3_1('search');
+            break;
+        case 'tab_3_bt_Inquery2':
+            loadTabGrid3_2('search');
+            break;
+        case 'tab_3_bt_Inquery3':
+            loadTabGrid3_3('search');
+            break;
+    }
+}
+
+function DoExcel3(id) {
+    switch (id) {
+        case 'tab_3_bt_Excel1':
+            var str = '/MobileMng/MobileCloseExcel/SelectFEE_MANAGE_Excel';
+            $("#tab_3_pay_method1_h").val($("#tab_3_pay_method1").val());
+            $("#tab_3_pay_type1_h").val($("#tab_3_pay_type1").val());
+            $("#tab_3_use_is1_h").val($("#tab_3_use_is1").val());
+            $("#tab_3_fee_type1_h").val($("#tab_3_fee_type1").val());
+            $('#searchFromTab3Grid1').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+        case 'tab_3_bt_Excel2':
+            var str = '/MobileMng/MobileCloseExcel/SelectFEE_MANAGE_Histroy_Excel';
+            $("#tab_3_pay_method2_h").val($("#tab_3_pay_method2").val());
+            $("#tab_3_pay_type2_h").val($("#tab_3_pay_type2").val());
+            $("#tab_3_fromDate2_h").val($("#tab_3_fromDate2").val());
+            $("#tab_3_toDate2_h").val($("#tab_3_toDate2").val());
+            $('#searchFromTab3Grid2').attr('target', 'hiddenExcel').attr('action', str).attr('method', 'post').submit();
+            break;
+
+    };
+};
+
+function DoSave3(id) {
+    switch (id) {
+        case 'tab_3_bt_Save1':
+            var pay_method = $('#tab_3_pay_method1_1').val();
+            if (pay_method == "") {
+                alert("결제선를 선택하세요.");
+                return;
+            }
+            var pay_type = $('#tab_3_pay_type1_1').val();
+            if (pay_type == "") {
+                alert("PG를 선택하세요.");
+                return;
+            }
+            var use_is = $('#tab_3_use_is1_1').val();
+            if (use_is == "") {
+                alert("사용여부를 선택하세요.");
+                return;
+            }
+            var fee_type = $('#tab_3_fee_type1_1').val();
+            if (fee_type == "") {
+                alert("수수료구분을 선택하세요.");
+                return;
+            }
+            if (fee_type == 101) {
+                var PAY_AMOUNT = $('#tab_3_PAY_AMOUNT_1').jqxNumberInput('getDecimal');
+                if (PAY_AMOUNT == null) {
+                    alert("정액를 등록하세요.");
+                    return;
+                }
+            } else if(fee_type == 102){ 
+                var PAY_RATE = $('#tab_3_PAY_RATE_1').jqxNumberInput('getDecimal');
+                if (PAY_RATE == null) {
+                    alert("정률을 등록하세요.");
+                    return;
+                }
+            }
+            var MEMO_CONTENT = $('#tab_3_MEMO_CONTENT_1').val();
+            if (MEMO_CONTENT == "") {
+                alert("비고를 등록하세요.");
+                return;
+            }
+            var getReportColumnsParams = {
+                "type" : "cru"
+               , "pay_method": pay_method
+               , "pay_type": pay_type
+               , "use_is": use_is
+               , "fee_type": fee_type
+               , "PAY_AMOUNT": PAY_AMOUNT
+               , "PAY_RATE": PAY_RATE
+               , "MEMO_CONTENT": MEMO_CONTENT
+               , "OPRT": _LoginId
+            };
+
+            $.ajax({
+                url: "/MobileMng/MobileClose/CrudFeeManager",
+                dataType: 'json',
+                type: 'POST',
+                data: getReportColumnsParams,
+                beforeSend: function () {
+                    $(grid3_1.grid_id).jqxGrid('clear');
+                    $(grid3_1.grid_id).jqxGrid('showloadelement');
+                },
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                },
+                success: function (data) {
+                    // initailize grid
+                    alert(data.message);
+                    $(grid3_1.grid_id).jqxGrid('hideloadelement');
+                    loadTabGrid3_1('search');
+                    loadTabGrid3_2('search');
+                    initInput();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+            break;
+    }
+}
+
+function DoInit3() {
+    initInput();
+}
+
+function initInput() {
+    $('#tab_3_fee_type1_1').val("");
+    $('#tab_3_pay_method1_1').val("");
+    $('#tab_3_pay_type1_1').val("");
+    $('#tab_3_use_is1_1').val("Y");
+    $('#tab_3_MEMO_CONTENT_1').val("");
+    setTimeout(function () { $('#tab_3_pay_method1_1').focus(); }, 100);
+    var rowindex = $(grid3_1.grid_id).jqxGrid('getselectedrowindex');
+    if (rowindex > -1) {
+        $(grid3_1.grid_id).jqxGrid('unselectrow', rowindex);
+    }
+   
+}
+
+function DoDel3(id) {
+    switch (id) {
+        case 'tab_3_bt_Del1':
+            //_LoginId
+            var object;
+            var getselectedrowindexes = $(grid3_1.grid_id).jqxGrid('getselectedrowindexes');
+            if (getselectedrowindexes < 0 || getselectedrowindexes == "") {
+                alert("삭제할 행을 선택하세요.");
+                return;
+            }
+
+            if (!confirm("선택한 행을 삭제하시겠습니까?")) {
+                return;
+            }
+            object = $(grid3_1.grid_id).jqxGrid('getRowData', getselectedrowindexes);
+            var pay_method = object.PAY_METHOD;
+            var pay_type = object.PAY_TYPE;
+            var fee_type = object.FEE_TYPE;
+
+            var getReportColumnsParams = {
+                "type": "DELETE"
+               , "pay_method": pay_method
+               , "pay_type": pay_type
+               , "fee_type": fee_type
+               , "OPRT": _LoginId
+            };
+            
+            $.ajax({
+                url: "/MobileMng/MobileClose/CrudFeeManager",
+                dataType: 'json',
+                type: 'POST',
+                data: getReportColumnsParams,
+                beforeSend: function () {
+                    $(grid3_1.grid_id).jqxGrid('clear');
+                    $(grid3_1.grid_id).jqxGrid('showloadelement');
+                },
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                },
+                success: function (data) {
+                    // initailize grid
+                    alert(data.message);
+                    $(grid3_1.grid_id).jqxGrid('hideloadelement');
+                    loadTabGrid3_1('search');
+                    loadTabGrid3_2('search');
+                    initInput();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+            
+            break;
+    }
+}

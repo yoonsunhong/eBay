@@ -1,0 +1,135 @@
+﻿var grid3_1 = {
+    grid_id: "#jqxFeeSearch"
+   , grid_init: function (dataAdapter) {
+       $(grid3_1.grid_id).jqxGrid({
+           width: tab_3.grid_width,
+           height: tab_3.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           statusbarheight: 25,
+           showstatusbar: false,
+           showaggregates: false,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               { text: '결제선CODE', datafield: 'PAY_METHOD', width: 100, align: 'center', cellsalign: 'center', hidden: true },
+               { text: '결제선', datafield: 'PAY_METHOD_NAME', width: 100, align: 'center', cellsalign: 'center' },
+               { text: 'PGCODE', datafield: 'PAY_TYPE', width: 120, align: 'center', cellsalign: 'center', hidden: true },
+               { text: 'PG', datafield: 'PAY_TYPE_NAME', width: 120, align: 'center', cellsalign: 'center' },
+               { text: 'FEE_TYPE', datafield: 'FEE_TYPE', width: 120, align: 'center', cellsalign: 'center', hidden: true },
+               { text: '수수료구분', datafield: 'FEE_TYPE_NAME', width: 100, align: 'center', cellsalign: 'center' },
+               { text: '정액', datafield: 'FIXED_AMNT', width: 200, align: 'center', cellsalign: 'right', cellsformat: 'n' },
+               { text: '정률', datafield: 'FIX_RATE', width: 200, align: 'center', cellsalign: 'right', cellsformat: 'd4' },
+               { text: '비고', datafield: 'ETC', width: 300, align: 'center', cellsalign: 'left' },
+               { text: 'USE_IS', datafield: 'USE_IS', width: 120, align: 'center', cellsalign: 'center', hidden: true },
+               { text: '사용여부', datafield: 'USE_IS_NAME', width: 100, align: 'center', cellsalign: 'left' },
+           ],
+       });
+   }
+}
+
+$(grid3_1.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid3_1.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid3_1.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid3_1.grid_id).jqxGrid('render'); }, 10);
+});
+
+$(grid3_1.grid_id).on('rowclick', function (event) {
+    var boundIndex = args.rowindex;
+    $(grid3_1.grid_id).jqxGrid('selectrow', boundIndex);
+});
+
+$(grid3_1.grid_id).on('rowselect', function (event) {
+    // event arguments.
+    var args = event.args;
+    // row's bound index.
+    var rowBoundIndex = args.rowindex;
+    // row's data. The row's data object or null(when all rows are being selected or unselected with a single action). If you have a datafield called "firstName", to access the row's firstName, use var firstName = rowData.firstName;
+    var rowData = args.row;
+    var PAY_METHOD = rowData['PAY_METHOD'];
+    var PAY_TYPE = rowData['PAY_TYPE'];
+
+    var FEE_TYPE = rowData['FEE_TYPE'];
+    var FIXED_AMNT = rowData['FIXED_AMNT'];
+    var FIX_RATE = rowData['FIX_RATE'];
+    var ETC = rowData['ETC'];
+    var USE_IS = rowData['USE_IS'];
+
+    $('#tab_3_pay_method1_1').val(PAY_METHOD);
+    $('#tab_3_pay_type1_1').val(PAY_TYPE);
+
+    $('#tab_3_use_is1_1').val(USE_IS);
+
+    $('#tab_3_PAY_AMOUNT_1').val(FIXED_AMNT);
+    $('#tab_3_PAY_RATE_1').val(FIX_RATE);
+
+    $('#tab_3_fee_type1_1').val(FEE_TYPE);
+
+    //    $('#tab_3_MEMO_CONTENT_1').val(ETC);
+    setTimeout(function () {
+        $(grid3_1.grid_id).jqxGrid('focus');
+    }, 1);
+});
+
+var loadTabGrid3_1 = function (gubn) {
+    var pay_method = "";
+    var pay_type = "";
+    var use_is = "";
+    var fee_type = "";
+    if (gubn == 'search') {
+        pay_method = $("#tab_3_pay_method1").val();
+        pay_type = $("#tab_3_pay_type1").val();
+        use_is = $("#tab_3_use_is1").val();
+        fee_type = $("#tab_3_fee_type1").val();
+    }
+    var postData = { pay_method: pay_method, pay_type: pay_type, use_is: use_is, fee_type: fee_type };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectFEE_MANAGE",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        beforeSend: function () {
+            $(grid3_1.grid_id).jqxGrid('clear');
+            $(grid3_1.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+               , datatype: 'json'
+               , datafields: [
+                    { name: 'PAY_METHOD', type: 'string' },
+                    { name: 'PAY_METHOD_NAME', type: 'string' },
+                    { name: 'PAY_TYPE', type: 'string' },
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+                    { name: 'FEE_TYPE', type: 'string' },
+                    { name: 'FEE_TYPE_NAME', type: 'string' },
+
+                    { name: 'FIXED_AMNT', type: 'number' },
+                    { name: 'FIX_RATE', type: 'decimal' },
+                    { name: 'ETC', type: 'string' },
+                    { name: 'USE_IS', type: 'string' },
+                    { name: 'USE_IS_NAME', type: 'string' },
+                  ]
+                , id: "tab3_grid1"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid3_1.grid_id).jqxGrid('source', dataAdapter);
+                $(grid3_1.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid3_1.grid_init(dataAdapter);
+            }
+        }
+    });
+}

@@ -1,0 +1,185 @@
+﻿var grid2 = {
+    grid_id :"#jqxSubgrid"
+   ,grid_init: function (dataAdapter) {
+       $(grid2.grid_id).jqxGrid({
+           width: tab_1.grid_width,
+           height: tab_1.grid_height,
+           source: dataAdapter,
+           filterable: false,
+           altrows: false,
+           showstatusbar: true,
+           statusbarheight: 25,
+           showaggregates: true,
+           columnsresize: true,
+           columnsreorder: true,
+           theme: 'energyblue',
+           columns: [
+               {
+                   text: 'PG', datafield: 'PAY_TYPE_NAME', width: 90, align: 'center', cellsalign: 'center'
+                   , aggregates: ['count']
+                   , aggregatesrenderer: aggregatesrenderer1_2
+               },
+               {
+                   text: '구분', datafield: 'STATUS_NAME', width: 70, align: 'center', cellsalign: 'center'
+                   , cellsrenderer: cellsrenderer_2
+                   , aggregates: [{ 'sum': function () { return '전체합계'; } }]
+                   , aggregatesrenderer: aggregatesrenderer
+               },
+               {
+                   text: '차이', datafield: 'DIFF_PAY_AMNT', width: 130, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '수수료공급대가', datafield: 'DIFF_FEE_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divDiff', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인일', datafield: 'PG_CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center', columngroup: 'divPG', cellsformat: 'n'
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인번호', datafield: 'PG_TXID', width: 200, align: 'center', cellsalign: 'center', columngroup: 'divPG', cellsformat: 'n'
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인액', datafield: 'PG_PAY_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '수수료공급대가', datafield: 'PG_FEE_AMNT', width: 110, align: 'center', cellsalign: 'right', columngroup: 'divPG', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인일', datafield: 'AU_CLOSE_DATE', width: 80, align: 'center', cellsalign: 'center', columngroup: 'divAuction', cellsformat: 'n'
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인번호', datafield: 'AU_TXID', width: 200, align: 'center', cellsalign: 'center', columngroup: 'divAuction'
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '승인액', datafield: 'AU_PAY_AMNT', width: 120, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+               {
+                   text: '수수료공급대가', datafield: 'AU_FEE_AMNT', width: 110, align: 'center', cellsalign: 'right', columngroup: 'divAuction', cellsformat: 'n'
+                   , aggregates: ['sum']
+                   , aggregatesrenderer: aggregatesrenderer
+                   , cellsrenderer: cellsrenderer_2
+               },
+           ],
+           columngroups: [
+               { text: '차이', align: 'center', name: 'divDiff' },
+               { text: 'PG', align: 'center', name: 'divPG' },
+               { text: 'Auction', align: 'center', name: 'divAuction' }
+           ],
+       });
+   }
+}
+
+var aggregatesrenderer1_2 = function (aggregates) {
+    var renderstring = "";
+
+    $.each(aggregates, function (key, value) {
+        renderstring += '<div style="position: relative; margin: 4px; overflow: hidden;"> 개수[' + value + ']</div>';
+    });
+    return renderstring;
+}
+
+var cellsrenderer_2 = function (index, datafield, value, defaultHtml, column, rowdata) {
+    var element = $(defaultHtml);
+    if (datafield == "DIFF_PAY_AMNT" || datafield == "DIFF_FEE_AMNT" ) {
+        if (value < 0) {
+            element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0', 'color': 'red' });
+        } else {
+            element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+        }
+    } else {
+        element.css({ 'width': '100%', 'height': '100%', 'padding': '4px', 'margin': '0' });
+    }
+    return element[0].outerHTML;
+}
+
+
+$(grid2.grid_id).on("columnresized", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2.grid_id).jqxGrid('render'); }, 10);
+});
+$(grid2.grid_id).on("columnreordered", function (event) {
+    // event arguments.
+    setTimeout(function () { $(grid2.grid_id).jqxGrid('render'); }, 10);
+});
+
+var loadTabGrid2 = function (gubn) {
+    var pgGubn = "";
+    var fromDate = "";
+    var toDate = "";
+    var same_code = "";
+    if (gubn == 'search') {
+        pgGubn = $("#tab_1_pgGubn2").val();
+        fromDate = $("#tab_1_fromDate2").val();
+        toDate = $("#tab_1_toDate2").val();
+        same_code = $("#tab_1_same_code2").val();
+    }
+    var postData = { pgGubn: pgGubn, fromDate: fromDate, toDate: toDate, same_code: same_code };
+    $.ajax({
+        url: "/MobileMng/MobileClose/SelectMobileReconDailyPostDetail",
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        async: true,
+        autoloadstate:true,
+        beforeSend: function () {
+            $(grid2.grid_id).jqxGrid('clear');
+            $(grid2.grid_id).jqxGrid('showloadelement');
+        },
+        error: function (json, textStatus, errorThrown) {
+            alert(' Error :' + errorThrown);
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        },
+        success: function (data) {
+            // initailize grid
+            var gridData = data.rows;
+            var gridSource =
+            {
+                localdata: gridData
+                , datatype: 'json'
+                , datafields: [
+                    { name: 'PAY_TYPE_NAME', type: 'string' },
+                    { name: 'STATUS_NAME', type: 'string' },
+                    { name: 'DIFF_PAY_AMNT', type: 'number' },
+                    { name: 'DIFF_FEE_AMNT', type: 'number' },
+                    { name: 'PG_CLOSE_DATE', type: 'string' },
+                    { name: 'PG_TXID', type: 'string' },
+                    { name: 'PG_PAY_AMNT', type: 'number' },
+                    { name: 'PG_FEE_AMNT', type: 'number' },
+                    { name: 'AU_CLOSE_DATE', type: 'string' },
+                    { name: 'AU_TXID', type: 'string' },
+                    { name: 'AU_PAY_AMNT', type: 'number' },
+                    { name: 'AU_FEE_AMNT', type: 'number' }
+                ]
+                , id: "tab1_grid2"
+            };
+            var dataAdapter = new $.jqx.dataAdapter(gridSource, {});
+            if (gubn == 'search') {
+                $(grid2.grid_id).jqxGrid('source', dataAdapter);
+                $(grid2.grid_id).jqxGrid('hideloadelement');
+            } else {
+                grid2.grid_init(dataAdapter);
+            }
+        },
+        error: function (request, status, error) {
+              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+}
